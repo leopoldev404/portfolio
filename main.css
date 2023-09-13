@@ -40,6 +40,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 12px;
+    zoom: 100%;
 }
 
 body {
@@ -193,7 +194,10 @@ section {
 }
 
 .bordered {
-    border: 1px solid var(--light-color);
+    background: linear-gradient(var(--background-dark-blue), var(--background-dark-blue)) padding-box,
+        var(--background-lilla) border-box;
+    border-radius: 50em;
+    border: 2px solid transparent;
 }
 
 .rotating-text {
@@ -241,15 +245,6 @@ section {
     animation: reversed-rotate 40s linear infinite;
 }
 
-.color-lilla {
-    color: #CC7DDA;
-}
-
-.color-yellow {
-    color: #F6BE85;
-}
-
-
 .top-left {
     top: 0;
     left: 0;
@@ -261,8 +256,8 @@ section {
 }
 
 .top-left-out {
-    top: 2rem;
-    left: 2rem;
+    top: 1.7rem;
+    left: 1.7rem;
 }
 
 .top-right {
@@ -276,8 +271,8 @@ section {
 }
 
 .top-right-out {
-    top: 2rem;
-    right: 2rem;
+    top: 1.7rem;
+    right: 1.7rem;
 }
 
 
@@ -294,8 +289,8 @@ section {
 
 
 .bottom-right-out {
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 1.7rem;
+    right: 1.7rem;
 }
 
 
@@ -310,8 +305,8 @@ section {
 }
 
 .bottom-left-out {
-    bottom: 2rem;
-    left: 2rem;
+    bottom: 1.7rem;
+    left: 1.7rem;
 }
 
 
@@ -343,5 +338,3 @@ section {
 .section-intro-buttons a {
     padding: .4rem 1rem;
 }
-
-
