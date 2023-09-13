@@ -20,7 +20,7 @@ function closeMenu() {
   elements = document.getElementsByClassName("close-menu");
   Array.from(elements).forEach((element) => {
     element.addEventListener("click", () => {
-      menuContainer.style.left = "-100%";
+      menuContainer.style.left = "-110%";
     });
   });
 }
