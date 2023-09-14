@@ -67,6 +67,11 @@ section {
     width: 100%;
 }
 
+.header-icon {
+    font-size: 2rem;
+    color: #fff;
+}
+
 .small-logo {
     background: var(--background-dark);
     color: #fff;
@@ -89,7 +94,6 @@ section {
     -webkit-background-clip: text;
     background-clip: none;
     -webkit-text-fill-color: transparent;
-    z-index: 15;
 }
 
 .menu-container {
@@ -137,22 +141,11 @@ section {
     height: 100vh;
 }
 
-.profile-pic-container-out {
+.profile-pic-container {
     position: relative;
-    width: 6.5rem;
-    height: 6.5rem;
+    width: 7rem;
+    height: 7rem;
     border-radius: 50%;
-    background: var(--background-indigo);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.profile-pic-container-in {
-    width: 6.2rem;
-    height: 6.2rem;
-    border-radius: 50%;
-    background: var(--background-dark);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,8 +156,8 @@ section {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 5.5rem;
-    height: 5.5rem;
+    width: 6rem;
+    height: 6rem;
     border-radius: 50%;
 }
 
@@ -275,8 +268,6 @@ section {
     right: 1.7rem;
 }
 
-
-
 .bottom-right {
     bottom: 0;
     right: 0;
@@ -330,11 +321,31 @@ section {
     }
 }
 
-.section-intro-buttons {
-    position: relative;
-    top: 20rem;
+.section-intro-buttons-container {
+    position: absolute;
+    width: 90%;
+    margin: auto;
+    bottom: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
 
-.section-intro-buttons a {
-    padding: .4rem 1rem;
+.section-intro-buttons-container a {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 2rem;
+    background: var(--background-lilla);
+}
+
+.btn-icon {
+    font-size: 1.5rem;
 }
