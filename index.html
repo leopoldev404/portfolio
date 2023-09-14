@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="assets/style/main.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
@@ -39,31 +39,41 @@
         <section class="section-intro">
 
             <div class="rotating-out slow-rotation bordered">
-                <ion-icon class="rotating-icon top-left-out slow-rotation-reverse" name="logo-amazon"></ion-icon>
-                <ion-icon class="rotating-icon top-right-out slow-rotation-reverse" name="logo-microsoft"></ion-icon>
-                <ion-icon class="rotating-icon bottom-left-out slow-rotation-reverse" name="logo-google"></ion-icon>
-                <ion-icon class="rotating-icon bottom-right-out slow-rotation-reverse" name="logo-docker"></ion-icon>
+                <img class="rotating-icon top-left-out slow-rotation-reverse" src="assets/icons/aws.svg" alt="aws icon">
+                <img class="rotating-icon top-right-out slow-rotation-reverse" src="assets/icons/docker.svg"
+                    alt="docker icon">
+                <img class="rotating-icon bottom-right-out slow-rotation-reverse" src="assets/icons/gc.svg"
+                    alt="google cloud icon">
+                <img class="rotating-icon bottom-left-out slow-rotation-reverse" src="assets/icons/azure.svg"
+                    alt="azure icon">
             </div>
 
             <div class="rotating-middle middle-rotation bordered">
-                <p class="rotating-text top-left-plus middle-rotation-reverse">.NET</p>
-                <ion-icon class="rotating-icon top-right-plus middle-rotation-reverse" name="logo-nodejs"></ion-icon>
-                <ion-icon class="rotating-icon bottom-left-plus middle-rotation-reverse" name="logo-angular"></ion-icon>
+                <img class="rotating-icon top-right-plus middle-rotation-reverse" src="assets/icons/nodejs.svg"
+                    alt="nodejs icon">
+                <img class="rotating-icon bottom-right-plus middle-rotation-reverse" src="assets/icons/angular.svg"
+                    alt="angular icon">
+                <img class="rotating-icon top-left-plus middle-rotation-reverse" src="assets/icons/dotnet.svg"
+                    alt="dotnet icon">
             </div>
 
             <div class="rotating-in fast-rotation bordered">
-                <p class="rotating-text top-left fast-rotation-reverse">C#</p>
-                <p class="rotating-text bottom-right fast-rotation-reverse">Go</p>
-                <ion-icon class="rotating-icon top-right fast-rotation-reverse" name="logo-javascript"></ion-icon>
-                <ion-icon class="rotating-icon bottom-left fast-rotation-reverse" name="logo-python"></ion-icon>
+                <img class="rotating-icon top-left fast-rotation-reverse" src="assets/icons/csharp.svg"
+                    alt="csharp icon">
+                <img class="rotating-icon bottom-left fast-rotation-reverse" src="assets/icons/go.svg" alt="go icon">
+                <img class="rotating-icon top-right fast-rotation-reverse" src="assets/icons/typescript.svg"
+                    alt="typescript icon">
+                <img class="rotating-icon bottom-right fast-rotation-reverse" src="assets/icons/python.svg"
+                    alt="python icon">
             </div>
 
-                <div class="profile-pic-container bordered">
-                    <div class="profile-pic"></div>
-                </div>
+            <div class="profile-pic-container bordered">
+                <div class="profile-pic"></div>
+            </div>
 
             <div class="section-intro-buttons-container">
-                <a href="LeonardoPolCV.pdf" download="leonardopolresume">Resume <ion-icon class="btn-icon" name="cloud-download-outline"></ion-icon></a>
+                <a href="assets/resume/LeonardoPolCV.pdf" download="leonardopolresume.pdf">Resume <ion-icon
+                        class="btn-icon" name="cloud-download-outline"></ion-icon></a>
                 <a href="#">Contact <ion-icon class="btn-icon" name="send-outline"></ion-icon></a>
             </div>
 
@@ -73,7 +83,7 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="main.js"></script>
+    <script src="assets/scripts/main.js"></script>
 </body>
 
 </html>

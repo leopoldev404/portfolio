@@ -13,14 +13,14 @@ sr.reveal("header", { delay: 200 });
 sr.reveal("section", { delay: 200 });
 
 document.getElementById("open-menu").addEventListener("click", () => {
-  menuContainer.style.left = "0";
+  menuContainer.style.top = "0";
 });
 
 function closeMenu() {
   elements = document.getElementsByClassName("close-menu");
   Array.from(elements).forEach((element) => {
     element.addEventListener("click", () => {
-      menuContainer.style.left = "-110%";
+      menuContainer.style.top = "-110%";
     });
   });
 }
