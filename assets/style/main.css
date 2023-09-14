@@ -30,7 +30,6 @@
 html {
     scroll-behavior: smooth;
     font-size: var(--mobile-font-size);
-    zoom: 100%;
     font-family:
         system-ui,
         -apple-system,
