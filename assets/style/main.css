@@ -1,5 +1,6 @@
 :root {
     --background-lilla: linear-gradient(87.03deg, #756AF6 16.38%, #CC7DDA 62.94%, #F6BE85 97.64%);
+    --background-reversed-lilla: linear-gradient(87.03deg, #F6BE85 16.38%, #CC7DDA 62.94%, #756AF6 97.64%);
     --background-dark: #1e2137;
     --background-dark-blue: #181a29;
     --background-cool-dark: #191c1f;
@@ -29,6 +30,8 @@
 html {
     scroll-behavior: smooth;
     font-size: var(--mobile-font-size);
+    overflow-y: scroll;
+    overflow-x: hidden;
     font-family:
         system-ui,
         -apple-system,
@@ -67,6 +70,7 @@ pre {
 body {
     background: var(--background-dark-blue);
     color: var(--color-grey);
+    overflow-x: hidden;
 }
 
 header {
@@ -74,7 +78,6 @@ header {
     top: 0;
     left: 0;
     right: 0;
-    padding: 2rem 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -87,6 +90,11 @@ header {
 section {
     width: 100%;
     text-align: center;
+    overflow-x: hidden;
+}
+
+.header-icons-container {
+    margin-left: 2rem;
 }
 
 .header-icon {
@@ -111,11 +119,14 @@ section {
 
 .menu-icon {
     font-size: 3rem;
+    margin: 1.5rem 2rem;
+    margin-left: 0;
     cursor: pointer;
     background: var(--background-lilla);
     -webkit-background-clip: text;
     background-clip: none;
     -webkit-text-fill-color: transparent;
+
 }
 
 .menu-container {
@@ -133,12 +144,19 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
-.menu-icon-container {
-    margin-top: 2rem;
-    text-align: center;
+.close-menu-icon {
+    position: absolute;
+    font-size: 3rem;
+    top: 1.5rem;
+    right: 2rem;
+    cursor: pointer;
+    background: var(--background-lilla);
+    -webkit-background-clip: text;
+    background-clip: none;
+    -webkit-text-fill-color: transparent;
 }
 
 .menu-items-container {
@@ -146,7 +164,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .menu-items-container a {
@@ -208,8 +226,6 @@ section {
     border-radius: 50%;
     transform: rotate(25deg);
 }
-
-
 
 .bordered {
     background: linear-gradient(var(--background-dark-blue), var(--background-dark-blue)) padding-box,
@@ -348,28 +364,39 @@ section {
 
 .section-intro-buttons-container {
     position: absolute;
-    width: 90%;
+    left: 5%;
+    right: 5%;
     bottom: 5rem;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     align-items: center;
     gap: 2rem;
+}
+
+.bg-gradient-lilla {
+    background: var(--background-dark);
 }
 
 .section-intro-buttons-container a {
     width: 45%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: .5rem;
-    padding: 1rem 0;
-    font-size: 1.2rem;
+    align-items: center;
+    gap: .7rem;
     font-weight: 500;
+    background: var(--background-cool);
     color: #fff;
-    border-radius: 2rem;
-    background: var(--background-lilla);
+    border-radius: 1.6rem;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+}
+
+.bg-gradient-reversed-lilla {
+    background: var(--background-dark);
 }
 
 .btn-icon {
     font-size: 1.5rem;
+    font-weight: 500;
 }
