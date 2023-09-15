@@ -18,6 +18,12 @@
     --mobile-font-size: 12px;
 }
 
+@media only screen and (min-width: 780px) {
+    html {
+      font-size: 16px !important;
+    }
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -67,7 +73,7 @@ pre {
 }
 
 body {
-    background: var(--background-dark-blue);
+    background: var(--background-cool-dark);
     color: var(--color-grey);
     overflow-x: hidden;
 }
@@ -99,21 +105,6 @@ section {
 .header-icon {
     font-size: 2rem;
     color: #fff;
-}
-
-.small-logo {
-    background: var(--background-dark);
-    color: #fff;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--background-dark);
-    color: var(--color-blue);
-    border-radius: 50%;
-    font-size: 1.6rem;
-    line-height: 3rem;
 }
 
 .menu-icon {
@@ -221,7 +212,7 @@ section {
 }
 
 .bordered {
-    background: linear-gradient(var(--background-dark-blue), var(--background-dark-blue)) padding-box,
+    background: linear-gradient(var(--background-cool-dark), var(--background-cool-dark)) padding-box,
         var(--background-lilla) border-box;
     border-radius: 50em;
     border: 2px solid transparent;
@@ -235,7 +226,7 @@ section {
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    background-color: var(--background-dark-blue);
+    background-color: var(--background-cool-dark);
     border-radius: 50%;
 }
 
@@ -244,7 +235,7 @@ section {
     width: 2.8rem;
     height: 2.8rem;
     padding: .4rem;
-    background-color: var(--background-dark-blue);
+    background-color: var(--background-cool-dark);
 }
 
 .fast-rotation {
@@ -373,11 +364,23 @@ section {
     align-items: center;
     gap: .7rem;
     font-weight: 500;
-    background: var(--background-dark);
+    background: var(--background-cool-dark);
     color: #fff;
-    border-radius: 1.6rem;
+    border-radius: 2rem;
     font-size: 1.2rem;
     padding: 1rem 0;
+}
+
+
+.section-intro-buttons-container a:nth-child(1) {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.section-intro-buttons-container a:nth-child(2) {
+    background: #fff;
+    color: var(--background-cool-dark);
 }
 
 .btn-icon {
