@@ -3,7 +3,7 @@
     --background-reversed-lilla: linear-gradient(87.03deg, #F6BE85 16.38%, #CC7DDA 62.94%, #756AF6 97.64%);
     --background-dark: #1e2137;
     --background-dark-blue: #181a29;
-    --background-cool-dark: #191c1f;
+    --background-cool-dark: #1A1832;
     --background-cool: linear-gradient(161deg, rgba(255, 49, 140, .5), rgba(255, 49, 140, 0)), #5233cc;
     --background-pink: linear-gradient(45deg, #a855f7 14.21%, #ec4899 83.82%);
     --background-sky: linear-gradient(45deg, #07B5D5 14.21%, #3984F5 83.82%);
@@ -14,13 +14,12 @@
     --purple-color: #6B57FF;
     --color-blue: #3b82f6;
     --color-grey: #cbd5e1;
-
     --mobile-font-size: 12px;
 }
 
 @media only screen and (min-width: 780px) {
     html {
-      font-size: 16px !important;
+        font-size: 16px !important;
     }
 }
 
@@ -73,7 +72,7 @@ pre {
 }
 
 body {
-    background: var(--background-cool-dark);
+    background: var(--background-dark);
     color: var(--color-grey);
     overflow-x: hidden;
 }
@@ -102,13 +101,9 @@ section {
     margin-left: 2rem;
 }
 
-.header-icon {
-    font-size: 2rem;
-    color: #fff;
-}
-
 .menu-icon {
-    font-size: 2.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
     margin: 1.5rem 2rem;
     margin-left: 0;
     cursor: pointer;
@@ -136,7 +131,8 @@ section {
 
 .close-menu-icon {
     position: absolute;
-    font-size: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     top: 1.5rem;
     right: 2rem;
     cursor: pointer;
@@ -212,7 +208,7 @@ section {
 }
 
 .bordered {
-    background: linear-gradient(var(--background-cool-dark), var(--background-cool-dark)) padding-box,
+    background: linear-gradient(var(--background-dark), var(--background-dark)) padding-box,
         var(--background-lilla) border-box;
     border-radius: 50em;
     border: 2px solid transparent;
@@ -226,7 +222,7 @@ section {
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    background-color: var(--background-cool-dark);
+    background-color: var(--background-dark);
     border-radius: 50%;
 }
 
@@ -235,7 +231,7 @@ section {
     width: 2.8rem;
     height: 2.8rem;
     padding: .4rem;
-    background-color: var(--background-cool-dark);
+    background-color: var(--background-dark);
 }
 
 .fast-rotation {
@@ -364,26 +360,14 @@ section {
     align-items: center;
     gap: .7rem;
     font-weight: 500;
-    background: var(--background-cool-dark);
+    background: var(--background-lilla);
     color: #fff;
     border-radius: 2rem;
     font-size: 1.2rem;
     padding: 1rem 0;
 }
 
-
-.section-intro-buttons-container a:nth-child(1) {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-}
-
-.section-intro-buttons-container a:nth-child(2) {
-    background: #fff;
-    color: var(--background-cool-dark);
-}
-
 .btn-icon {
-    font-size: 1.5rem;
-    font-weight: 500;
+    width: 2rem;
+    height: 2rem;
 }
