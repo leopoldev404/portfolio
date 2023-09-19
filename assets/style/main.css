@@ -1,4 +1,5 @@
 :root {
+    --bg-gradient-purple-yellow: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
     --background-lilla: linear-gradient(87.03deg, #756AF6 16.38%, #CC7DDA 62.94%, #F6BE85 97.64%);
     --background-reversed-lilla: linear-gradient(87.03deg, #F6BE85 16.38%, #CC7DDA 62.94%, #756AF6 97.64%);
     --background-dark: #1e2137;
@@ -73,8 +74,9 @@ pre {
 
 body {
     background: var(--background-dark);
-    color: var(--color-grey);
+    color: var(--light-color);
     overflow-x: hidden;
+    background-attachment: fixed;
 }
 
 header {
@@ -209,9 +211,8 @@ section {
 
 .bordered {
     background: linear-gradient(var(--background-dark), var(--background-dark)) padding-box,
-        var(--background-lilla) border-box;
-    border-radius: 50em;
-    border: 2px solid transparent;
+    var(--bg-gradient-purple-yellow) border-box;
+    border: 1px solid transparent;
 }
 
 .rotating-text {
@@ -222,7 +223,7 @@ section {
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    background-color: var(--background-dark);
+    background: var(--background-dark);
     border-radius: 50%;
 }
 
@@ -231,7 +232,7 @@ section {
     width: 2.8rem;
     height: 2.8rem;
     padding: .4rem;
-    background-color: var(--background-dark);
+    background: var(--background-dark);
 }
 
 .fast-rotation {
@@ -360,7 +361,7 @@ section {
     align-items: center;
     gap: .7rem;
     font-weight: 500;
-    background: var(--background-lilla);
+    background: var(--bg-gradient-purple-yellow);
     color: #fff;
     border-radius: 2rem;
     font-size: 1.2rem;
@@ -370,4 +371,96 @@ section {
 .btn-icon {
     width: 2rem;
     height: 2rem;
+}
+
+.section-about {
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+hr {
+    width: 70%;
+    height: 1px;
+    background: var(--bg-gradient-purple-yellow);
+    margin: 1rem auto 0 auto;
+}
+
+.section-about h1 {
+    font-size: 3rem;
+    margin-top: 2rem;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.section-about h3 {
+    margin-top: .3rem;
+    color: #fff;
+}
+
+.section-about h4 {
+    margin-top: .3rem;
+    color: #fff;
+}
+
+.section-about h4 img {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-top: 1.5rem;
+}
+
+
+.section-about > p {
+    color: #fff;
+    width: 90%;
+    margin: auto;
+    margin-top: 2rem;
+    text-align: justify;
+}
+
+.section-about-cards-container {
+    width: 100%;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.section-about-card {
+    width: 30%;
+    border-radius: .5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.section-about-card p {
+    margin-top: .5rem;
+    padding-bottom: 1rem;
+}
+
+
+.section-certifications {
+    margin-top: 2rem;
+}
+
+.certifications-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.certification-icon {
+    width: 5rem;
+    height: 5rem;
+    min-width: 5rem;
 }
