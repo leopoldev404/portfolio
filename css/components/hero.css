@@ -1,0 +1,19 @@
+.hero {
+  padding-top: 5em;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero_text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+.hero_text p {
+  line-height: 1.5;
+}
+
+.hero_text a {
+  width: fit-content;
+}

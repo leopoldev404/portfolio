@@ -1,150 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Leonardo Pol - Portfolio</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style/main.css">
-</head>
-
-<body>
-    <header>
-        <div class="header-icons-container">
-            <a target="_blank" href="https://www.linkedin.com/in/leonardo-pol-3773aa207/">
-                <img class="btn-icon" src="assets/icons/linkedin.svg" alt="linkedin icon">
-            </a>
-            &nbsp;
-            <a target="_blank" href="https://github.com/leopoldev404">
-                <img class="btn-icon" src="assets/icons/github.svg" alt="github icon">
-            </a>
-        </div>
-
-        <img id="open-menu" class="menu-icon" src="assets/icons/menu.svg" alt="menu icon">
+  <body>
+    <header class="wrapper">
+      <h3>LEONARDO POL</h3>
+      <a href="#" class="button dark">Hire me</a>
     </header>
 
-    <div class="menu-container">
-        <img class="close-menu-icon close-menu" src="assets/icons/close.svg" alt="close icon">
-
-        <div class="menu-items-container">
-            <a class="close-menu" href="#">About</a>
-            <a class="close-menu" href="#">Technologies</a>
-            <a class="close-menu" href="#">Experiences</a>
-            <a class="close-menu" href="#">Projects</a>
-            <a class="close-menu" href="#">Contact</a>
-        </div>
-    </div>
-
     <main>
-        <section class="section-intro">
+      <section class="hero wrapper">
+        <div class="hero_text">
+          <h1>
+            Leonardo Pol,<br />
+            Software Engineer
+          </h1>
 
-            <div class="rotating-out slow-rotation bordered">
-                <img class="rotating-icon top-left-out slow-rotation-reverse" src="assets/icons/aws.svg" alt="aws icon">
-                <img class="rotating-icon top-right-out slow-rotation-reverse" src="assets/icons/docker.svg"
-                    alt="docker icon">
-                <img class="rotating-icon bottom-right-out slow-rotation-reverse" src="assets/icons/gc.svg"
-                    alt="google cloud icon">
-                <img class="rotating-icon bottom-left-out slow-rotation-reverse" src="assets/icons/azure.svg"
-                    alt="azure icon">
-            </div>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Repellendus rerum omnis sed possimus aliquam
+          </p>
 
-            <div class="rotating-middle middle-rotation bordered">
-                <img class="rotating-icon top-right-plus middle-rotation-reverse" src="assets/icons/nodejs.svg"
-                    alt="nodejs icon">
-                <img class="rotating-icon bottom-right-plus middle-rotation-reverse" src="assets/icons/angular.svg"
-                    alt="angular icon">
-                <img class="rotating-icon top-left-plus middle-rotation-reverse" src="assets/icons/dotnet.svg"
-                    alt="dotnet icon">
-            </div>
+          <a href="#" class="button dark">Contact me</a>
+        </div>
+      </section>
 
-            <div class="rotating-in fast-rotation bordered">
-                <img class="rotating-icon top-left fast-rotation-reverse" src="assets/icons/csharp.svg"
-                    alt="csharp icon">
-                <img class="rotating-icon bottom-left fast-rotation-reverse" src="assets/icons/go.svg" alt="go icon">
-                <img class="rotating-icon top-right fast-rotation-reverse" src="assets/icons/typescript.svg"
-                    alt="typescript icon">
-                <img class="rotating-icon bottom-right fast-rotation-reverse" src="assets/icons/python.svg"
-                    alt="python icon">
-            </div>
+      <!-- <section class="skills">
+        <div class="block title"><h2>Checkout Skills</h2></div>
+        <div class="block skill">
+          <img
+            src="/assets/icons/angular.svg"
+            alt="Angular"
+            width="28px"
+            height="28px"
+          />
+          <h3>Angular 2+ (v18)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            delectus aliquid ipsam, ex harum error est cum praesentium assumenda
+          </p>
+        </div>
 
-            <div class="profile-pic-container bordered">
-                <div class="profile-pic"></div>
-            </div>
-
-            <div class="section-intro-buttons-container">
-                <a href="assets/resume/LeonardoPolCV.pdf" download="leonardopolresume.pdf">
-                    <p>Resume</p>
-                    <img class="btn-icon" src="assets/icons/download.svg" alt="download icon">
-                </a>
-                <a href="#">
-                    <p>Contact</p>
-                    <img class="btn-icon" src="assets/icons/send.svg" alt="send icon">
-                </a>
-            </div>
-        </section>
-
-        <section class="section-about">
-            <h2>About me</h2>
-            <hr>
-            <h1>Leonardo Pol</h1>
-            <h3>Senior Software Engineer</h3>
-            <h4><img src="assets/icons/location.svg" alt="location icon"> ITALY, Treviso</h4>
-            <p>
-                As a highly skilled and passionate Software Engineer,
-                I have a proven track record of delivering innovative
-                solutions that drive business growth.
-                My expertise in microservices, cloud native development,
-                and Full-Stack engineering has allowed me to
-                contribute significantly to various high-impact projects
-            </p>
-
-            <div class="section-about-cards-container">
-                <div class="section-about-card">
-                    <p>Certifications</p>
-                    <p>50+</p>
-                </div>
-
-                <div class="section-about-card">
-                    <p>Projects</p>
-                    <p>50+</p>
-                </div>
-
-                <div class="section-about-card">
-                    <p>Customer Satisfied!</p>
-                    <p>50+</p>
-                </div>
-
-            </div>
-            
-        </section>
-
-        <section class="section-experiences">
-            <h2>Experiences</h2>
-            <hr>
-
-        </section>
-
-        <section class="section-projects">
-            <h2>Projects</h2>
-            <hr>
-
-        </section>
-
-        <section class="section-certifications">
-            <h2>Certifications</h2>
-            <hr>
-            <div class="certifications-container">
-                <img class="certification-icon" src="assets/icons/az204.png" alt="az-204 icon">
-                <img class="certification-icon" src="assets/icons/az400.png" alt="az-204 icon">
-                <img class="certification-icon" src="assets/icons/awsdev.png" alt="aws dev icon">
-                <img class="certification-icon" src="assets/icons/gcdev.png" alt="gc dev icon">
-            </div>
-
-        </section>
-
+        <div class="block skill">
+          <img
+            src="/assets/icons/angular.svg"
+            alt="Angular"
+            width="28px"
+            height="28px"
+          />
+          <h3>Angular 2+ (v18)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            delectus aliquid ipsam, ex harum error est cum praesentium assumenda
+          </p>
+        </div>
+        <div class="block skill">
+          <img
+            src="/assets/icons/angular.svg"
+            alt="Angular"
+            width="28px"
+            height="28px"
+          />
+          <h3>Angular 2+ (v18)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            delectus aliquid ipsam, ex harum error est cum praesentium assumenda
+          </p>
+        </div>
+        <div class="block skill">
+          <img
+            src="/assets/icons/angular.svg"
+            alt="Angular"
+            width="28px"
+            height="28px"
+          />
+          <h3>Angular 2+ (v18)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            delectus aliquid ipsam, ex harum error est cum praesentium assumenda
+          </p>
+        </div>
+        <div class="block skill">
+          <img
+            src="/assets/icons/angular.svg"
+            alt="Angular"
+            width="28px"
+            height="28px"
+          />
+          <h3>Angular 2+ (v18)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            delectus aliquid ipsam, ex harum error est cum praesentium assumenda
+          </p>
+        </div>
+        <div class="block skill">
+          <img
+            src="/assets/icons/angular.svg"
+            alt="Angular"
+            width="28px"
+            height="28px"
+          />
+          <h3>Angular 2+ (v18)</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            delectus aliquid ipsam, ex harum error est cum praesentium assumenda
+          </p>
+        </div>
+      </section> -->
     </main>
-
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="assets/scripts/main.js"></script>
-</body>
-
+  </body>
 </html>
