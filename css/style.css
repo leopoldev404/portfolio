@@ -1,8 +1,8 @@
-@import url("/css/global/boilerplate.css");
-@import url("/css/components/header.css");
-@import url("/css/components/button.css");
-@import url("/css/components/hero.css");
-@import url("/css/global/layout.css");
-@import url("/css/global/fonts.css");
-@import url("/css/components/skills.css");
-@import url("/css/components/block.css");
+@import url("global/boilerplate.css");
+@import url("components/header.css");
+@import url("components/button.css");
+@import url("components/hero.css");
+@import url("global/layout.css");
+@import url("global/fonts.css");
+@import url("components/skills.css");
+@import url("components/block.css");
