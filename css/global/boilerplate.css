@@ -21,6 +21,13 @@ body {
   background-color: #fff;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 img {
   display: block;
   max-width: 100%;
