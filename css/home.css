@@ -18,6 +18,8 @@
   border-radius: 50%;
   padding: 2px;
   background-color: #f7f7f7;
+  background: url(../assets/icons/me.jpg) no-repeat center;
+  background-size: cover;
 }
 
 #home-name-title {
