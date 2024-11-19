@@ -11,10 +11,15 @@ nav {
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
   background-color: #f7f7f7;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .nav-icon {
   padding: 0.5rem;
   border-radius: 50%;
-  background-color: #f7f7f7;
 }
