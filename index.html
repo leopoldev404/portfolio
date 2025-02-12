@@ -1,256 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo Pol - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-
-	<style>
-    
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-
-body {
-    margin: 0;
-    font-family: sans-serif; /* Choose a modern font-family */
-    line-height: 1.6;
-    color: #333; /* Dark grey text */
-    background-color: #f4f4f4; /* Light grey background */
-}
-
-.container {
-    max-width: 960px; /* Adjust as needed for your design */
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.section {
-    padding: 40px 0;
-}
-
-h1, h2, h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    color: #222; /* Even darker grey for headings */
-}
-
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-h3 {
-    font-size: 1.8rem;
-}
-
-p {
-    margin-bottom: 1.5rem;
-    color: #555; /* Medium grey for paragraph text */
-}
-
-a {
-    color: #007bff; /* Example: Blue link color - adjust to your brand */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Header Styles */
-header {
-    background-color: #fff; /* White header background */
-    padding: 40px 0;
-    text-align: center;
-}
-
-.header-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile-image {
-    width: 150px; /* Adjust size as needed */
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover; /* Ensure image fills circle nicely */
-    margin-bottom: 20px;
-    border: 5px solid #eee; /* Light grey border */
-}
-
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1.2rem;
-    color: #777; /* Lighter grey for headline paragraph */
-}
-
-
-/* Portfolio Styles */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px;
-}
-
-.portfolio-item {
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden; /* Clip image corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.3s ease; /* Smooth hover effect */
-}
-
-.portfolio-item:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
-
-.portfolio-item img {
-    width: 100%;
-    height: 200px; /* Fixed height for project images - adjust as needed */
-    object-fit: cover; /* Cover container, crop if necessary */
-    display: block; /* Remove extra space below image */
-}
-
-.portfolio-item-content {
-    padding: 20px;
-}
-
-.portfolio-item h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-}
-
-.portfolio-item p {
-    margin-bottom: 1rem;
-}
-
-.portfolio-item a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff; /* Button background color */
-    color: #fff; /* White button text */
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    text-align: center; /* Center text in button */
-}
-
-.portfolio-item a:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    text-decoration: none; /* Remove underline on hover for buttons */
-}
-
-
-/* Skills Styles */
-.skills-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap; /* Allow skills to wrap on smaller screens */
-    gap: 10px; /* Spacing between skill items */
-    justify-content: center; /* Center skills list */
-}
-
-.skills-list li {
-    background-color: #e0e0e0; /* Light grey skill background */
-    padding: 8px 15px;
-    border-radius: 20px; /* Rounded skill badges */
-    font-size: 1rem;
-    color: #444; /* Darker grey skill text */
-    margin-bottom: 0.5rem; /* Spacing between rows of skills */
-}
-
-
-/* Contact Styles */
-.contact-list {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-.contact-list li {
-    margin-bottom: 1rem;
-}
-
-.contact-list a {
-    font-weight: bold; /* Make contact links stand out */
-}
-
-
-/* Footer Styles */
-footer {
-    background-color: #333; /* Dark grey footer background */
-    color: #fff; /* White footer text */
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9rem;
-}
-
-
-/* Responsive Design - Media Queries */
-
-/* For tablets and larger smartphones */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .header-content {
-        flex-direction: column; /* Stack header content vertically */
-    }
-
-    .profile-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    .portfolio-grid {
-        grid-template-columns: 1fr; /* Stack portfolio items on smaller screens */
-    }
-
-    .skills-list {
-        justify-content: flex-start; /* Align skills to the left on smaller screens if desired */
-    }
-}
-
-/* For smaller smartphones */
-@media (max-width: 480px) {
-    h2 {
-        font-size: 1.7rem;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .profile-image {
-        width: 100px;
-        height: 100px;
-    }
-}
-    </style>
-
+<body >
     <header>
         <div class="container header-content">
-            <img src="images/profile-placeholder.jpg" alt="Your Profile Picture" class="profile-image">
+            <img src="assets/icons/me.jpg" alt="Your Profile Picture" class="profile-image">
             <h1>Leonardo Pol</h1>
             <p>Your LinkedIn Headline Here</p>
         </div>
@@ -313,5 +75,292 @@ footer {
         </div>
     </footer>
 
+<style>
+/* style.css */
+
+/* CSS Variables for Light Mode (Default) */
+:root {
+    --background-color: #f4f4f4;       /* Light grey background */
+    --text-color: #333;             /* Dark grey text */
+    --heading-color: #222;          /* Even darker grey for headings */
+    --paragraph-color: #555;        /* Medium grey for paragraph text */
+    --header-bg-color: #fff;         /* White header background */
+    --footer-bg-color: #333;         /* Dark grey footer background */
+    --footer-text-color: #fff;       /* White footer text */
+    --link-color: #007bff;          /* Blue link color */
+    --link-hover-color: #0056b3;     /* Darker blue link hover */
+    --card-bg-color: #fff;          /* White card background (portfolio items) */
+    --card-shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow color */
+    --skill-bg-color: #e0e0e0;        /* Light grey skill background */
+    --skill-text-color: #444;       /* Darker grey skill text */
+    --border-color: #eee;            /* Light grey border */
+}
+
+/* Dark Mode Styles (using .dark-mode class) */
+.dark-mode {
+    --background-color: #121212;       /* Very dark grey/black background */
+    --text-color: #eee;             /* Light grey text for dark mode */
+    --heading-color: #fff;          /* White headings in dark mode */
+    --paragraph-color: #ccc;        /* Lighter grey paragraph text */
+    --header-bg-color: #1e1e1e;      /* Darker grey header background */
+    --footer-bg-color: #222;         /* Slightly lighter dark grey footer */
+    --footer-text-color: #ddd;       /* Lighter grey footer text */
+    --link-color: #5bc0de;          /* Cyan/light blue link color in dark mode */
+    --link-hover-color: #31b0d5;     /* Slightly darker cyan on hover */
+    --card-bg-color: #282828;         /* Dark grey card background */
+    --card-shadow-color: rgba(255, 255, 255, 0.1); /* White subtle shadow */
+    --skill-bg-color: #444;          /* Dark grey skill background */
+    --skill-text-color: #ddd;       /* Lighter grey skill text */
+    --border-color: #555;            /* Darker grey border */
+}
+
+
+/* Reset and Basic Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace; /* JetBrains Mono font */
+    line-height: 1.6;
+    color: var(--text-color); /* Using CSS variable for text color */
+    background-color: var(--background-color); /* Using CSS variable for background color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode switch */
+}
+
+.container {
+    max-width: 960px; /* Adjust as needed for your design */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.section {
+    padding: 40px 0;
+}
+
+h1, h2, h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--heading-color); /* Using CSS variable for heading color */
+}
+
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--paragraph-color); /* Using CSS variable for paragraph color */
+}
+
+a {
+    color: var(--link-color); /* Using CSS variable for link color */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth link color transition */
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--link-hover-color); /* Using CSS variable for link hover color */
+}
+
+/* Header Styles */
+header {
+    background-color: var(--header-bg-color); /* Using CSS variable for header background */
+    padding: 40px 0;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Smooth header background transition */
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image {
+    width: 150px; /* Adjust size as needed */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover; /* Ensure image fills circle nicely */
+    margin-bottom: 20px;
+    border: 5px solid var(--border-color); /* Using CSS variable for border color */
+    transition: border-color 0.3s ease; /* Smooth border transition */
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: var(--paragraph-color); /* Using CSS variable for paragraph color */
+}
+
+
+/* Portfolio Styles */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px;
+}
+
+.portfolio-item {
+    background-color: var(--card-bg-color); /* Using CSS variable for card background */
+    border-radius: 8px;
+    overflow: hidden; /* Clip image corners */
+    box-shadow: 0 2px 5px var(--card-shadow-color); /* Using CSS variable for shadow color */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 200px; /* Fixed height for project images - adjust as needed */
+    object-fit: cover; /* Cover container, crop if necessary */
+    display: block; /* Remove extra space below image */
+}
+
+.portfolio-item-content {
+    padding: 20px;
+}
+
+.portfolio-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.portfolio-item p {
+    margin-bottom: 1rem;
+}
+
+.portfolio-item a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--link-color); /* Using CSS variable for button background */
+    color: var(--footer-text-color); /* Using CSS variable for button text (using footer text color for contrast) */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth button transitions */
+    text-align: center; /* Center text in button */
+}
+
+.portfolio-item a:hover {
+    background-color: var(--link-hover-color); /* Using CSS variable for button hover background */
+    text-decoration: none; /* Remove underline on hover for buttons */
+}
+
+
+/* Skills Styles */
+.skills-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow skills to wrap on smaller screens */
+    gap: 10px; /* Spacing between skill items */
+    justify-content: center; /* Center skills list */
+}
+
+.skills-list li {
+    background-color: var(--skill-bg-color); /* Using CSS variable for skill background */
+    padding: 8px 15px;
+    border-radius: 20px; /* Rounded skill badges */
+    font-size: 1rem;
+    color: var(--skill-text-color); /* Using CSS variable for skill text */
+    margin-bottom: 0.5rem; /* Spacing between rows of skills */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth skill transitions */
+}
+
+
+/* Contact Styles */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.contact-list li {
+    margin-bottom: 1rem;
+}
+
+.contact-list a {
+    font-weight: bold; /* Make contact links stand out */
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: var(--footer-bg-color); /* Using CSS variable for footer background */
+    color: var(--footer-text-color); /* Using CSS variable for footer text */
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth footer transitions */
+}
+
+
+/* Responsive Design - Media Queries */
+
+/* For tablets and larger smartphones */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .header-content {
+        flex-direction: column; /* Stack header content vertically */
+    }
+
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Stack portfolio items on smaller screens */
+    }
+
+    .skills-list {
+        justify-content: flex-start; /* Align skills to the left on smaller screens if desired */
+    }
+}
+
+/* For smaller smartphones */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+    }
+}    
+</style>
+
+	
 </body>
 </html>
