@@ -1,469 +1,812 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Leonardo Pol - Software Engineer</title>
+    <link rel="icon" href="me.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS styles embedded directly */
+        :root {
+            /* Light Theme (default) - Pure Black & White */
+            --main-bg: #FFFFFF; /* Pure White background for body */
+            --main-text: #000000; /* Pure Black text for body */
+            --primary-color: #000000; /* Dark elements like Header/Footer background, main headings */
+            --secondary-color: #000000; /* Accents like borders, bullet points, underlines */
+            --accent-color: #000000; /* Subtle highlights */
+            --card-bg: #FFFFFF; /* White card background */
+            --border-color: #000000; /* Strong black borders */
+            --link-hover-color: #FFFFFF; /* This variable is now used more selectively */
+            --stars-color: #000000; /* Stars on white background */
+
+            /* Header/Footer Text Color (adapts for contrast with primary-color background) */
+            --header-footer-text-color: #FFFFFF;
+            /* Hamburger line color (adapta for contrast with primary-color background) */
+            --hamburger-line-color: #FFFFFF;
+        }
+
+        /* Dark Theme overrides are now removed as it's no longer needed */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            background-color: var(--main-bg);
+            color: var(--main-text);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, text-decoration 0.3s ease; /* Added text-decoration transition */
+        }
+
+        /* Modified a:hover to only add underline by default */
+        a:hover {
+            /* color: var(--link-hover-color); /* REMOVED: This was causing the issue */
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--header-footer-text-color); /* Dynamically adapt text color */
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer, more spread shadow */
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: 50% 15%;
+            border: 6px solid var(--header-footer-text-color); /* Dynamically adapt border color */
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly more prominent shadow for the icon */
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header h1 {
+            margin: 10px 0 5px;
+            font-size: 3em;
+            letter-spacing: 1px;
+            color: var(--header-footer-text-color); /* Dynamically adapt text color */
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1.4em;
+            color: var(--header-footer-text-color); /* Dynamically adapt text color */
+        }
+
+        /* Theme Toggle Button (CSS rules for it are no longer needed) */
+
+
+        /* Navigation (for desktop) */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--header-footer-text-color); /* Dynamically adapt link text color */
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease; /* Added color transition */
+        }
+
+        /* Explicitly set color for nav links on hover */
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent white for hover on dark background */
+            text-decoration: none; /* No underline for nav links on hover */
+            transform: translateY(-2px);
+            color: var(--header-footer-text-color); /* Keep text white on hover */
+        }
+
+        /* body.dark-theme nav a:hover is now removed */
+
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--hamburger-line-color); /* Dynamically adapt line color */
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger-menu.open span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.open span:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Transparent black overlay */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mobile-nav-overlay.open {
+            display: block;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: -100vh; /* Start above the viewport */
+            left: 0;
+            width: 100%;
+            height: 100vh; /* Make it 100% of viewport height */
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Still allows subtle shadow */
+            padding-top: 80px;
+            transition: top 0.3s ease-in-out;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .mobile-nav.open {
+            top: 0; /* Drop down to top of viewport */
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+            display: flex; /* Use flexbox for centering */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        .mobile-nav ul li {
+            width: 100%;
+        }
+
+        .mobile-nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--header-footer-text-color); /* Dynamically adapt link text color */
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Transparent white border */
+            transition: background-color 0.3s ease;
+            text-align: center; /* Center text within each link block */
+        }
+
+        .mobile-nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent white for hover */
+            text-decoration: none;
+        }
+
+        /* body.dark-theme .mobile-nav ul li a:hover is now removed */
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        section.fade-in-section {
+            opacity: 1;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--main-text);
+        }
+
+        /* Professional Experience - Carousel (previously grid) */
+        .experience-grid {
+            display: flex; /* Changed from grid to flex for horizontal layout */
+            overflow-x: auto; /* Enables horizontal scrolling */
+            scroll-snap-type: x mandatory; /* Makes cards snap into place */
+            -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS devices */
+            gap: 30px; /* Space between cards */
+            margin-top: 30px;
+            padding: 0 20px; /* Horizontal padding for the scrollable area */
+            justify-content: flex-start; /* Aligns cards to the start of the container */
+            align-items: flex-start; /* Aligns cards to the top */
+        }
+
+        .job-card {
+            flex: 0 0 auto; /* Prevent cards from shrinking/growing, make them fixed width */
+            width: 300px; /* Explicit width for each card in the carousel */
+            scroll-snap-align: start; /* Each card will snap to the start of the scroll container */
+            border-radius: 16px; /* Increased border-radius for softer corners */
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Lighter initial shadow */
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: var(--card-bg); /* Ensure card background is set */
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* More pronounced hover shadow */
+        }
+
+        .job-card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .job-card .job-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--main-text);
+            display: block;
+            font-size: 1.1em;
+        }
+
+        .job-card .job-location-period {
+            font-style: italic;
+            color: var(--main-text);
+            margin-bottom: 15px;
+            display: block;
+            font-weight: 300;
+            font-size: 0.95em;
+        }
+
+        .job-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .job-card li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .job-card li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Certifications Section */
+        .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .certification-card {
+            background-color: var(--card-bg);
+            /* border: 1px solid var(--border-color); /* REMOVED */
+            border-radius: 16px; /* Increased border-radius for softer corners */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Lighter initial shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* More pronounced hover shadow */
+        }
+
+        .certification-card h3 {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .certification-card p {
+            font-size: 0.95em;
+            color: var(--main-text);
+            margin-bottom: 15px;
+        }
+
+        .certification-card .cert-link {
+            display: inline-block;
+            background-color: var(--primary-color); /* Black in light */
+            color: var(--header-footer-text-color); /* White in light */
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .certification-card .cert-link:hover {
+            background-color: var(--header-footer-text-color); /* Swap background */
+            color: var(--primary-color); /* Swap text color */
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Feedback Section */
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feedback-card {
+            background-color: var(--card-bg);
+            /* border: 1px solid var(--border-color); /* REMOVED */
+            border-radius: 16px; /* Increased border-radius for softer corners */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Lighter initial shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feedback-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* More pronounced hover shadow */
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            text-align: center;
+            width: 100%;
+        }
+
+        .reviewer-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* border: 3px solid var(--secondary-color); /* REMOVED */
+            margin-bottom: 0;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 0;
+        }
+
+        .stars {
+            color: var(--stars-color);
+            font-size: 1.1em; /* Adjusted font size for compact text */
+            margin-bottom: 0;
+            white-space: nowrap; /* Prevent "5/5 ⭐" from wrapping */
+        }
+
+        .feedback-card p {
+            font-style: italic;
+            color: var(--main-text);
+            font-size: 0.95em;
+            margin-top: 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+
+        #contact p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--header-footer-text-color); /* Dynamically adapt text color */
+            text-align: center;
+            padding: 25px 0;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Softer, more spread shadow */
+        }
+
+        /* Container (max 1200px and 80% width) */
+        .container {
+            max-width: 1200px; /* Adjusted from 1000px to 1200px */
+            width: 80%; /* Set to 80% of the parent's width */
+            margin: 0 auto; /* Center the container */
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            header p {
+                font-size: 1.1em;
+            }
+
+            nav {
+                display: none;
+            }
+            .hamburger-menu {
+                display: flex;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            /* For smaller screens, ensure carousel cards have proper spacing and scrolling */
+            .experience-grid {
+                padding: 0 15px; /* Adjust padding for smaller screens */
+                /* Ensure cards are visible by scrolling horizontally */
+            }
+
+            .job-card {
+                padding: 25px;
+                /* Keep card width fixed for consistent scrolling */
+            }
+
+            .feedback-grid,
+            .certification-grid {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+
+            /* Theme toggle button specific CSS removed */
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                width: 90%; /* Increase width for smaller screens to ensure content fits well */
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .profile-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hamburger-menu {
+                top: 25px;
+            }
+
+            .mobile-nav {
+                width: 100%;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 30px;
+            }
+
+            #about p, #contact p {
+                font-size: 1em;
+            }
+
+            .job-card h3 {
+                font-size: 1.3em;
+            }
+            .job-card li {
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
-<body class="dark-mode">
+<body>
     <header>
-        <div class="container header-content">
-            <img src="assets/icons/me.jpg" alt="Your Profile Picture" class="profile-image">
-            <h1>Leonardo Pol</h1>
-            <p>Software Engineer | Italy</p>
-        </div>
+        <div class="container">
+            <div class="profile-header">
+                <img src="me.png" alt="Leonardo Pol" class="profile-icon">
+                <h1>Leonardo Pol</h1>
+                <p>Software Engineer</p>
+            </div>
+            <nav id="desktop-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+
+            <nav class="mobile-nav" id="mobile-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            </div>
     </header>
 
     <main>
-        <section id="about" class="container section">
+        <section id="about" class="container">
             <h2>About Me</h2>
-            <p>Seasoned Software Engineer with a passion for crafting innovative, scalable solutions.
-		With five years of experience, I’ve successfully led and contributed to the development of diverse tech projects, ranging from robust APIs and Big Data pipelines to cutting-edge IoT infrastructures and Serverless architectures.
-I thrive in collaborative environments, valuing the power of diverse perspectives to drive innovation. I’m committed to building high-performing teams and delivering exceptional results.</p>
+            <p>Over five years of experience, I have excelled in optimizing resources, identifying efficient alternatives, and driving impactful results across diverse tech projects.</p>
+            <p>From designing robust APIs and Big Data pipelines to building cutting-edge IoT infrastructures and Serverless architectures, I bring a strategic mindset to reduce costs while maintaining high performance.</p>
+            <p>A collaborative leader, I thrive in fostering team synergy, empowering cross-functional teams to work cohesively and deliver exceptional outcomes.</p>
         </section>
 
-        <section id="portfolio" class="container section">
-            <h2>Portfolio</h2>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" onclick="this.classList.toggle('is-flipped')">  <div class="card-inner">  <div class="card-face card-face-front">
-                            <h3>Project Title 1</h3>
-                            <p>Brief description of project 1. Highlight your role and key achievements.</p>
-                            <a onclick="this.classList.toggle('is-flipped')">View Project</a>
-                        </div>
-                        <div class="card-face card-face-back">  <div class="card-face-back-content">
-                                <h3>Project Description</h3>
-                                <p>Detailed project description goes here. You can add more in-depth information about the project, technologies used, challenges faced, and outcomes achieved.  This is the content that will be revealed on the back of the card.</p>
-                                <a onclick="this.classList.toggle('is-flipped')">Back to Front</a> </div>
-                        </div>
-                    </div>
+        <section id="experience" class="container">
+            <h2>Professional Experience</h2>
+
+            <div class="experience-grid"> <div class="job-card">
+                    <h3>Safety21</h3>
+                    <p class="job-title">Software Engineer</p>
+                    <p class="job-location-period">Padova, Jun 2024 - Present</p>
+                    <ul>
+                        <li>Maintain and enhance mission-critical applications supporting public safety operations for police headquarters and government agencies, ensuring high availability and performance.</li>
+                        <li>Drive infrastructure modernization with a cloud-first approach, leveraging containerization, microservices, and infrastructure-as-code to transform legacy systems.</li>
+                        <li>Lead the migration of on-premise applications to the cloud, prioritizing scalability, security, and cost-efficiency.</li>
+                        <li>Refactor legacy applications for cloud deployment, integrating cloud architecture best practices and DevOps methodologies.</li>
+                    </ul>
                 </div>
-                <div class="portfolio-item" onclick="this.classList.toggle('is-flipped')">
-                    <div class="card-inner">
-                        <div class="card-face card-face-front">
-                            <h3>Project Title 2</h3>
-                            <p>Brief description of project 2. Highlight your role and key achievements.</p>
-                            <a onclick="this.classList.toggle('is-flipped')">View Project</a>
-                        </div>
-                        <div class="card-face card-face-back">
-                            <div class="card-face-back-content">
-                                <h3>Project Description</h3>
-                                <p>Detailed project description for project 2.</p>
-                                <a onclick="this.classList.toggle('is-flipped')">Back to Front</a>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="job-card">
+                    <h3>Capgemini</h3>
+                    <p class="job-title">Senior Consultant</p>
+                    <p class="job-location-period">Venice, Jun 2022 - Jun 2024</p>
+                    <ul>
+                        <li>Optimized CI/CD pipelines for containerized applications using Docker, EKS, SonarQube, and GitLab, significantly reducing deployment times and enhancing project delivery efficiency.</li>
+                        <li>Led the development team composed by 22 devs for building Python-based microservices in the telecommunications sector, driving innovation and scalability in complex systems.</li>
+                    </ul>
                 </div>
-                <div class="portfolio-item" onclick="this.classList.toggle('is-flipped')">
-                    <div class="card-inner">
-                        <div class="card-face card-face-front">
-                            <h3>Project Title 3</h3>
-                            <p>Brief description of project 3. Highlight your role and key achievements.</p>
-                            <a onclick="this.classList.toggle('is-flipped')">View Project</a>
-                        </div>
-                        <div class="card-face card-face-back">
-                            <div class="card-face-back-content">
-                                <h3>Project Description</h3>
-                                <p>Detailed project description for project 3.</p>
-                                <a onclick="this.classList.toggle('is-flipped')">Back to Front</a>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="job-card">
+                    <h3>Avanade</h3>
+                    <p class="job-title">Analyst - Backend Developer</p>
+                    <p class="job-location-period">Padova, Apr 2021 - Jun 2022</p>
+                    <ul>
+                        <li>Spearheaded the development of containerized backend applications to collect and process satellite data from external providers.</li>
+                        <li>Designed and implemented an ETL pipeline for efficient satellite data processing.</li>
+                        <li>Built and managed an IoT infrastructure using Azure IoT Hub, enabling seamless data collection and analysis from hundreds of IoT devices.</li>
+                    </ul>
+                </div>
+
+                <div class="job-card">
+                    <h3>Texa</h3>
+                    <p class="job-title">Cloud&Software Developer</p>
+                    <p class="job-location-period">Monastier, Treviso, Jan 2020 - Apr 2021</p>
+                    <ul>
+                        <li>Developed a Full-Stack Web Extension to streamline Azure resource management, enabling cost tracking and project-specific resource utilization using SQL and Graph Databases.</li>
+                        <li>Optimized the existing cloud infrastructure by implementing best practices, suchs as efficient storage options, log management, and VM resizing, resulting in reduced costs and improved efficiency.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="container section">
-            <h2>Skills</h2>
-            <ul class="skills-list">
-                <li>.NET</li>
-                <li>Angular</li>
-                <li>Azure</li>
-                <li>AWS</li>
-                <li>Google Cloud</li>
-                </ul>
+        <section id="certifications" class="container">
+            <h2>Certifications</h2>
+            <div class="certification-grid">
+                <div class="certification-card">
+                    <h3>[Certification Name 1]</h3>
+                    <p>Issued by [Issuing Organization]</p>
+                    <p>[Date Achieved]</p>
+                    <a href="#" class="cert-link" target="_blank">View Credential</a>
+                </div>
+                <div class="certification-card">
+                    <h3>[Certification Name 2]</h3>
+                    <p>Issued by [Issuing Organization]</p>
+                    <p>[Date Achieved]</p>
+                    <a href="#" class="cert-link" target="_blank">View Credential</a>
+                </div>
+                <div class="certification-card">
+                    <h3>[Certification Name 3]</h3>
+                    <p>Issued by [Issuing Organization]</p>
+                    <p>[Date Achieved]</p>
+                    <a href="#" class="cert-link" target="_blank">View Credential</a>
+                </div>
+                </div>
+            <p style="margin-top: 30px; font-size: 0.9em; color: var(--main-text);">
+                Please replace the placeholder content above with your actual certification details.
+            </p>
         </section>
 
-        <section id="contact" class="container section">
+        <section id="feedback" class="container">
+            <h2>Feedback</h2>
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div class="reviewer-info">
+                        <img src="dev_girl.jpg" alt="Monylin" class="reviewer-icon">
+                        <p class="reviewer-name">Monylin</p>
+                        <div class="stars">5/5 ⭐</div>
+                    </div>
+                    <p>"Working with Leonardo was an absolute pleasure. His deep understanding of cloud architecture and ability to deliver complex projects on time and within budget is truly remarkable!"</p>
+                </div>
+                <div class="feedback-card">
+                    <div class="reviewer-info">
+                        <img src="sam.png" alt="Sam" class="reviewer-icon">
+                        <p class="reviewer-name">Sam</p>
+                        <div class="stars">5/5 ⭐</div>
+                    </div>
+                    <p>"Leonardo is a true team player and an inspiring leader. He consistently fosters a collaborative environment, leading to exceptional outcomes. Highly recommend!"</p>
+                </div>
+                <div class="feedback-card">
+                    <div class="reviewer-info">
+                        <img src="shooter.png" alt="Kaneki" class="reviewer-icon">
+                        <p class="reviewer-name">Kaneki</p>
+                        <div class="stars">5/5 ⭐</div>
+                    </div>
+                    <p>"Leonardo's expertise in optimizing CI/CD pipelines and his strategic mindset for cost reduction while maintaining performance are invaluable. A great asset to any team."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
             <h2>Contact</h2>
-            <ul class="contact-list">
-                <li>Email: <a href="mailto:leonardo.pol@outlook.com">leonardo.pol@outlook.com</a></li>
-                <li>LinkedIn: <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207/" target="_blank">Linkedin</a></li>
-                </ul>
+            <p>Email: <a href="mailto:leonardo.pol@outlook.com">leonardo.pol@outlook.com</a></p>
+            <p>Phone: 3427802285</p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank">linkedin.com/in/leonardo-pol</a></p>
+            <p>GitHub: <a href="https://github.com/leopoldev404" target="_blank">github.com/leopoldev404</a></p>
         </section>
     </main>
 
     <footer>
-        <div class="container footer-content">
+        <div class="container">
             <p>&copy; 2025 Leonardo Pol. All rights reserved.</p>
         </div>
     </footer>
 
-<style>
-/* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hamburger menu functionality
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+            const mobileNavLinks = document.querySelectorAll('#mobile-nav a');
 
-/* CSS Variables for Light Mode (Default) */
-:root {
-    --background-color: #f4f4f4;       /* Light grey background */
-    --text-color: #333;             /* Dark grey text */
-    --heading-color: #222;          /* Even darker grey for headings */
-    --paragraph-color: #555;        /* Medium grey for paragraph text */
-    --header-bg-color: #fff;         /* White header background */
-    --footer-bg-color: #333;         /* Dark grey footer background */
-    --footer-text-color: #fff;       /* White footer text */
-    --link-color: #007bff;          /* Blue link color */
-    --link-hover-color: #0056b3;     /* Darker blue link hover */
-    --card-bg-color: #fff;          /* White card background (portfolio items) */
-    --card-shadow-color: rgba(0, 0, 0, 0.1); /* Subtle shadow color */
-    --skill-bg-color: #e0e0e0;        /* Light grey skill background */
-    --skill-text-color: #444;       /* Darker grey skill text */
-    --border-color: #eee;            /* Light grey border */
-}
+            function toggleMobileMenu() {
+                hamburgerMenu.classList.toggle('open');
+                mobileNav.classList.toggle('open');
+                mobileNavOverlay.classList.toggle('open');
+                document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+            }
 
-/* Dark Mode Styles (using .dark-mode class) */
-.dark-mode {
-    --background-color: #121212;       /* Very dark grey/black background */
-    --text-color: #eee;             /* Light grey text for dark mode */
-    --heading-color: #fff;          /* White headings in dark mode */
-    --paragraph-color: #ccc;        /* Lighter grey paragraph text */
-    --header-bg-color: #1e1e1e;      /* Darker grey header background */
-    --footer-bg-color: #222;         /* Slightly lighter dark grey footer */
-    --footer-text-color: #ddd;       /* Lighter grey footer text */
-    --link-color: #5bc0de;          /* Cyan/light blue link color in dark mode */
-    --link-hover-color: #31b0d5;     /* Slightly darker cyan on hover */
-    --card-bg-color: #282828;         /* Dark grey card background */
-    --card-shadow-color: rgba(255, 255, 255, 0.1); /* White subtle shadow */
-    --skill-bg-color: #444;          /* Dark grey skill background */
-    --skill-text-color: #ddd;       /* Lighter grey skill text */
-    --border-color: #555;            /* Darker grey border */
-}
+            hamburgerMenu.addEventListener('click', toggleMobileMenu);
+            mobileNavOverlay.addEventListener('click', toggleMobileMenu);
 
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    setTimeout(toggleMobileMenu, 300);
+                });
+            });
 
-/* Reset and Basic Styles */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
+            // Smooth scrolling for all navigation links (desktop and mobile)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
 
-body {
-    margin: 0;
-    font-family: "Montserrat", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.6;
-    color: var(--text-color); /* Using CSS variable for text color */
-    background-color: var(--background-color); /* Using CSS variable for background color */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for dark mode switch */
-}
+            // Section fade-in on load
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('fade-in-section');
+            });
 
-.container {
-    max-width: 960px; /* Adjust as needed for your design */
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.section {
-    padding: 40px 0;
-}
-
-h1, h2, h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    color: var(--heading-color); /* Using CSS variable for heading color */
-}
-
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-h3 {
-    font-size: 1.8rem;
-}
-
-p {
-    margin-bottom: 1.5rem;
-    color: var(--paragraph-color); /* Using CSS variable for paragraph color */
-}
-
-a {
-    color: var(--link-color); /* Using CSS variable for link color */
-    text-decoration: none;
-    transition: color 0.3s ease; /* Smooth link color transition */
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--link-hover-color); /* Using CSS variable for link hover color */
-}
-
-/* Header Styles */
-header {
-    background-color: var(--header-bg-color); /* Using CSS variable for header background */
-    padding: 40px 0;
-    text-align: center;
-    transition: background-color 0.3s ease; /* Smooth header background transition */
-}
-
-.header-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile-image {
-    width: 150px; /* Adjust size as needed */
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover; /* Ensure image fills circle nicely */
-    margin-bottom: 20px;
-    border: 5px solid var(--border-color); /* Using CSS variable for border color */
-    transition: border-color 0.3s ease; /* Smooth border transition */
-}
-
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1.2rem;
-    color: var(--paragraph-color); /* Using CSS variable for paragraph color */
-}
-
-
-/* Portfolio Styles */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px;
-}
-
-.portfolio-item {
-    background-color: var(--card-bg-color); /* Using CSS variable for card background */
-    border-radius: 8px;
-    overflow: hidden; /* Clip image corners */
-    box-shadow: 0 2px 5px var(--card-shadow-color); /* Using CSS variable for shadow color */
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-}
-
-.portfolio-item:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
-
-.portfolio-item img {
-    width: 100%;
-    height: 200px; /* Fixed height for project images - adjust as needed */
-    object-fit: cover; /* Cover container, crop if necessary */
-    display: block; /* Remove extra space below image */
-}
-
-.portfolio-item-content {
-    padding: 20px;
-}
-
-.portfolio-item h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-}
-
-.portfolio-item p {
-    margin-bottom: 1rem;
-}
-
-.portfolio-item a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--link-color); /* Using CSS variable for button background */
-    color: var(--footer-text-color); /* Using CSS variable for button text (using footer text color for contrast) */
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth button transitions */
-    text-align: center; /* Center text in button */
-}
-
-.portfolio-item a:hover {
-    background-color: var(--link-hover-color); /* Using CSS variable for button hover background */
-    text-decoration: none; /* Remove underline on hover for buttons */
-}
-
-
-/* Skills Styles */
-.skills-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap; /* Allow skills to wrap on smaller screens */
-    gap: 10px; /* Spacing between skill items */
-    justify-content: center; /* Center skills list */
-}
-
-.skills-list li {
-    background-color: var(--skill-bg-color); /* Using CSS variable for skill background */
-    padding: 8px 15px;
-    border-radius: 20px; /* Rounded skill badges */
-    font-size: 1rem;
-    color: var(--skill-text-color); /* Using CSS variable for skill text */
-    margin-bottom: 0.5rem; /* Spacing between rows of skills */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth skill transitions */
-}
-
-
-/* Contact Styles */
-.contact-list {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-}
-
-.contact-list li {
-    margin-bottom: 1rem;
-}
-
-.contact-list a {
-    font-weight: bold; /* Make contact links stand out */
-}
-
-
-/* Footer Styles */
-footer {
-    background-color: var(--footer-bg-color); /* Using CSS variable for footer background */
-    color: var(--footer-text-color); /* Using CSS variable for footer text */
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth footer transitions */
-}
-
-	.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px;
-}
-
-.portfolio-item {
-    background-color: var(--card-bg-color);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px var(--card-shadow-color);
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer; /* Indicate it's clickable */
-    perspective: 1000px; /* Important for 3D perspective */
-    height: 250px; /* Fixed height for portfolio item container to contain both faces */
-}
-
-.card-inner {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s ease-in-out; /* Smooth flip animation */
-    transform-style: preserve-3d; /* Enable 3D transforms for children */
-    position: relative; /* For positioning faces */
-}
-
-.portfolio-item.is-flipped .card-inner {
-    transform: rotateY(180deg); /* Rotate 180 degrees on Y-axis when .is-flipped class is present */
-}
-
-.card-face {
-    position: absolute; /* Stack faces on top of each other */
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; /* Hide back face when rotated away */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border-radius: 8px;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-
-.card-face-front {
-    background-color: var(--card-bg-color); /* Front face background same as card */
-    color: var(--text-color); /* Front face text color */
-    z-index: 2; /* Ensure front face is initially on top */
-}
-
-.card-face-back {
-    background-color: var(--card-bg-color); /* Back face background same as card */
-    color: var(--text-color); /* Back face text color */
-    transform: rotateY(180deg); /* Initially rotate back face 180 degrees to hide it */
-}
-
-.card-face-back-content {
-    text-align: center; /* Center content on the back face */
-}
-
-.card-face-back a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--link-color);
-    color: var(--footer-text-color);
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    text-align: center;
-    margin-top: 1rem; /* Add space above "Back to Front" link */
-}
-
-.card-face-back a:hover {
-    background-color: var(--link-hover-color);
-    text-decoration: none;
-}
-
-
-/* Responsive Design - Media Queries */
-
-/* For tablets and larger smartphones */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-
-    .header-content {
-        flex-direction: column; /* Stack header content vertically */
-    }
-
-    .profile-image {
-        width: 120px;
-        height: 120px;
-    }
-
-    header h1 {
-        font-size: 2.5rem;
-    }
-
-    .portfolio-grid {
-        grid-template-columns: 1fr; /* Stack portfolio items on smaller screens */
-    }
-
-    .skills-list {
-        justify-content: flex-start; /* Align skills to the left on smaller screens if desired */
-    }
-}
-
-/* For smaller smartphones */
-@media (max-width: 480px) {
-    h2 {
-        font-size: 1.7rem;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .profile-image {
-        width: 100px;
-        height: 100px;
-    }
-}    
-</style>
-
-	
+            // Theme toggle functionality has been removed,
+            // the site will now always load in the light theme.
+        });
+    </script>
 </body>
 </html>
