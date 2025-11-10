@@ -70,6 +70,52 @@
         .btn-secondary { border: 1px solid var(--border); background: transparent; color: var(--text-primary); }
         .btn-secondary:hover { border-color: var(--text-primary); }
 
+        .hero-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-image {
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+  border: 2px solid var(--border);
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+}
+
+/* MOBILE NAV ICON */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: none;
+}
+
+/* Show icon in mobile view only */
+@media (max-width: 768px) {
+  .logo img {
+    display: block;
+  }
+}
+
         .status-indicator { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); }
         .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
@@ -163,26 +209,29 @@
 
     <!-- HERO -->
     <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>👋 Hey, I’m Leonardo Pol</h1>
-                <div class="subtitle">Software Engineer | Cloud & Backend Specialist</div>
-                <p class="description">
-                    I build scalable cloud systems, automate infrastructure, and craft reliable backend platforms.<br>
-                    Over 5 years shaping resilient digital products.<br>
-                    Always open to connect, collaborate, and exchange ideas 🤝
-                </p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Contact</a>
-                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="btn btn-secondary">LinkedIn</a>
-                </div>
-                <div class="status-indicator">
-                    <span class="status-dot"></span>
-                    Available for opportunities
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="container hero-layout">
+    <div class="hero-content">
+      <h1>👋 Hey, I’m Leonardo Pol</h1>
+      <div class="subtitle">Software Engineer | Cloud & Backend Specialist</div>
+      <p class="description">
+        I build scalable cloud systems, automate infrastructure, and craft reliable backend platforms.<br>
+        Over 5 years shaping resilient digital products.<br>
+        Always open to connect, collaborate, and exchange ideas 🤝
+      </p>
+      <div class="cta-buttons">
+        <a href="#contact" class="btn btn-primary">Contact</a>
+        <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="btn btn-secondary">LinkedIn</a>
+      </div>
+      <div class="status-indicator">
+        <span class="status-dot"></span>
+        Available for opportunities
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="me_ghibli_smiley.png" alt="Portrait of Leonardo Pol" />
+    </div>
+  </div>
+</section>
 
     <!-- EXPERIENCE -->
     <section id="experience">
