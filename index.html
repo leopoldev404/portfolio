@@ -1,423 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo Pol - Software Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leonardo Pol — Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #000000;
-            --bg-secondary: #0a0a0a;
-            --bg-tertiary: #141414;
-            --text-primary: #ffffff;
+            --bg-primary: #000;
+            --bg-glass: rgba(255, 255, 255, 0.05);
+            --bg-glass-hover: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.1);
+            --text-primary: #fff;
             --text-secondary: #a0a0a0;
-            --text-muted: #666666;
-            --border: #1a1a1a;
-            --border-hover: #333333;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent: #4ade80;
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
+            font-size: 15px;
             line-height: 1.7;
             overflow-x: hidden;
-            font-size: 14px;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; }
 
+        /* NAV */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.25rem 0;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(20px);
-            background: rgba(0, 0, 0, 0.9);
             border-bottom: 1px solid var(--border);
             z-index: 1000;
+            padding: 1rem 0;
         }
 
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1rem; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+        .hamburger-line { width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
+        .hamburger.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; }
+        .hamburger.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
-        .logo {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1001;
-        }
+        /* SECTIONS */
+        section { min-height: 100vh; padding: 8rem 0 4rem; display: flex; align-items: center; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
 
-        .hamburger-line {
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-            transition: all 0.3s ease;
-        }
+        /* HERO */
+        .hero-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .hero-content .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+        .hero-content .description { color: var(--text-secondary); max-width: 640px; margin-bottom: 2.5rem; font-size: 1rem; }
+        .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { padding: 0.875rem 1.75rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s; text-decoration: none; border-radius: 0.75rem; }
+        .btn-primary { background: var(--text-primary); color: #000; }
+        .btn-primary:hover { background: var(--text-secondary); }
+        .btn-secondary { border: 1px solid var(--border); background: transparent; color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--text-primary); }
 
-        .hamburger.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
-        }
+        .status-indicator { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
 
-        .hamburger.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        section {
-            min-height: 100vh;
-            padding: 8rem 0 4rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero {
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.03em;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-content .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-weight: 500;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .hero-content .description {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-            animation: fadeInUp 0.8s ease-out 0.4s backwards;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
-        }
-
-        .btn {
-            padding: 0.875rem 1.75rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 0.875rem;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .btn-primary {
-            background: var(--text-primary);
-            color: var(--bg-primary);
-        }
-
-        .btn-primary:hover {
-            background: var(--text-secondary);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid var(--border-hover);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--text-primary);
-        }
-
+        /* GLASS CARD */
         .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
             padding: 2rem;
             transition: all 0.3s;
         }
+        .glass-card:hover { background: var(--bg-glass-hover); border-color: var(--accent); }
 
-        .glass-card:hover {
-            border-color: var(--border-hover);
-        }
+        /* EXPERIENCE */
+        .experience-grid { display: grid; gap: 2rem; }
+        .experience-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: start; }
+        .experience-date { font-weight: 600; color: var(--text-primary); }
+        .experience-company { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
+        .experience-details h3 { margin-bottom: 1rem; }
+        .experience-details li { margin-bottom: 0.75rem; color: var(--text-secondary); font-size: 0.9rem; }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            letter-spacing: -0.02em;
-        }
-
-        .experience-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .experience-item {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 2rem;
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .experience-item:nth-child(1) { animation-delay: 0.1s; }
-        .experience-item:nth-child(2) { animation-delay: 0.2s; }
-        .experience-item:nth-child(3) { animation-delay: 0.3s; }
-        .experience-item:nth-child(4) { animation-delay: 0.4s; }
-
-        .experience-date {
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .experience-company {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        .experience-details h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .experience-details ul {
-            margin-top: 1rem;
-            padding-left: 1.25rem;
-            color: var(--text-secondary);
-        }
-
-        .experience-details li {
-            margin-bottom: 0.75rem;
-            font-size: 0.875rem;
-            line-height: 1.7;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category h3 {
-            font-size: 1rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-
+        /* SKILLS */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .skill-category h3 { margin-bottom: 1rem; }
         .skill-tag {
+            display: inline-block;
             padding: 0.5rem 0.875rem;
-            background: transparent;
             border: 1px solid var(--border);
+            border-radius: 1rem;
             font-size: 0.8rem;
             color: var(--text-secondary);
             transition: all 0.3s;
-            font-weight: 500;
+            margin: 0.3rem;
         }
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
-        .skill-tag:hover {
-            border-color: var(--text-primary);
-            color: var(--text-primary);
-        }
-
-        .contact-content {
-            max-width: 600px;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-
+        /* CONTACT */
+        .contact-content { max-width: 600px; margin: 0 auto; }
+        .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
         .contact-link {
             display: flex;
             align-items: center;
             gap: 1rem;
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.875rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s;
         }
+        .contact-link:hover { color: var(--accent); border-color: var(--accent); background: var(--bg-glass-hover); }
 
-        .contact-link:hover {
-            color: var(--text-primary);
-        }
+        /* FOOTER */
+        footer { padding: 2rem 0; color: var(--text-secondary); border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; }
 
-        .contact-link svg {
-            opacity: 0.5;
-        }
-
-        footer {
-            padding: 2rem 0;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.25rem;
-            }
-
-            .hero-content .subtitle {
-                font-size: 1rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
+            .hamburger { display: flex; }
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 100%;
-                max-width: 300px;
-                flex-direction: column;
-                background: rgba(0, 0, 0, 0.98);
-                backdrop-filter: blur(20px);
-                padding: 6rem 2rem 2rem;
-                gap: 2rem;
-                transition: right 0.3s ease;
-                border-left: 1px solid var(--border);
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column; align-items: start;
+                padding: 6rem 2rem; transition: right 0.3s ease;
             }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1rem;
-            }
-
-            .experience-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                text-align: center;
-            }
-        }
-
-        .status-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin-top: 1rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #4ade80;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
+            .nav-links.active { right: 0; }
+            .experience-item { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -425,7 +147,7 @@
     <nav>
         <div class="container">
             <div class="logo">leonardo.pol</div>
-            <button class="hamburger" id="hamburgerButton" aria-label="Toggle menu">
+            <button class="hamburger" id="hamburgerButton">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -439,13 +161,16 @@
         </div>
     </nav>
 
+    <!-- HERO -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Leonardo Pol</h1>
-                <div class="subtitle">Software Engineer</div>
+                <h1>👋 Hey, I’m Leonardo Pol</h1>
+                <div class="subtitle">Software Engineer | Cloud & Backend Specialist</div>
                 <p class="description">
-                    5+ years shipping scalable infrastructure. Specializing in cloud architecture, backend systems, and DevOps pipelines. Currently modernizing mission-critical applications at Safety21.
+                    I build scalable cloud systems, automate infrastructure, and craft reliable backend platforms.<br>
+                    Over 5 years shaping resilient digital products.<br>
+                    Always open to connect, collaborate, and exchange ideas 🤝
                 </p>
                 <div class="cta-buttons">
                     <a href="#contact" class="btn btn-primary">Contact</a>
@@ -459,67 +184,68 @@
         </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
         <div class="container">
             <h2 class="section-title">Experience</h2>
             <div class="experience-grid">
                 <div class="glass-card experience-item">
-                    <div class="experience-timeline">
+                    <div>
                         <div class="experience-date">Jun 2024 — Present</div>
                         <div class="experience-company">Safety21</div>
                     </div>
                     <div class="experience-details">
                         <h3>Software Engineer</h3>
                         <ul>
-                            <li>Maintain mission-critical systems supporting public safety operations for police headquarters and government agencies</li>
-                            <li>Drive infrastructure modernization through containerization, microservices architecture, and infrastructure-as-code</li>
-                            <li>Lead on-premise to cloud migration initiatives with emphasis on scalability, security, and cost optimization</li>
-                            <li>Refactor legacy applications integrating cloud-native patterns and DevOps best practices</li>
+                            <li>Maintaining mission-critical public safety infrastructure</li>
+                            <li>Modernizing systems via containerization and IaC</li>
+                            <li>Leading cloud migration and cost optimization initiatives</li>
+                            <li>Integrating cloud-native and DevOps best practices</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card experience-item">
-                    <div class="experience-timeline">
+                    <div>
                         <div class="experience-date">Jun 2022 — Jun 2024</div>
                         <div class="experience-company">Capgemini</div>
                     </div>
                     <div class="experience-details">
                         <h3>Senior Consultant</h3>
                         <ul>
-                            <li>Optimized CI/CD pipelines using Docker, EKS, SonarQube, and GitLab reducing deployment time by 40%</li>
-                            <li>Led 22-member engineering team building Python microservices for telecommunications infrastructure</li>
-                            <li>Architected containerized backend systems for real-time satellite data collection and processing</li>
-                            <li>Designed ETL pipeline handling 10TB+ satellite data with 99.9% uptime</li>
+                            <li>Optimized CI/CD pipelines (Docker, EKS, SonarQube, GitLab) reducing deploy time by 40%</li>
+                            <li>Led a 22-member backend team building Python microservices</li>
+                            <li>Architected real-time satellite data collection systems</li>
+                            <li>Designed 10TB+ ETL pipeline with 99.9% uptime</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card experience-item">
-                    <div class="experience-timeline">
+                    <div>
                         <div class="experience-date">Apr 2021 — Jun 2022</div>
                         <div class="experience-company">Avanade</div>
                     </div>
                     <div class="experience-details">
-                        <h3>Analyst | Backend Developer</h3>
+                        <h3>Backend Developer</h3>
                         <ul>
-                            <li>Built IoT infrastructure on Azure IoT Hub managing data streams from 500+ connected devices</li>
-                            <li>Developed full-stack web extension for Azure resource management and cost allocation tracking</li>
-                            <li>Implemented hybrid SQL and Graph database architecture for complex resource relationship mapping</li>
+                            <li>Built IoT infrastructure using Azure IoT Hub for 500+ devices</li>
+                            <li>Developed internal full-stack web tools for Azure resource management</li>
+                            <li>Implemented hybrid SQL + Graph DB architecture</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card experience-item">
-                    <div class="experience-timeline">
+                    <div>
                         <div class="experience-date">Jan 2020 — Apr 2021</div>
                         <div class="experience-company">TEXA</div>
                     </div>
                     <div class="experience-details">
                         <h3>Cloud & Software Developer</h3>
                         <ul>
-                            <li>Optimized cloud infrastructure reducing operational costs by 30% through storage tiering and resource right-sizing</li>
-                            <li>Implemented centralized logging and monitoring stack improving incident response time</li>
+                            <li>Reduced infrastructure costs by 30% via tiered storage and right-sizing</li>
+                            <li>Deployed centralized monitoring stack for faster incident resolution</li>
                         </ul>
                     </div>
                 </div>
@@ -527,26 +253,26 @@
         </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
         <div class="container">
             <h2 class="section-title">Technical Stack</h2>
             <div class="skills-grid">
                 <div class="glass-card skill-category">
-                    <h3>Cloud & Infrastructure</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Google Cloud Platform</span>
+                    <h3>Cloud & Infrastructure ☁️</h3>
+                    <div>
+                        <span class="skill-tag">GCP</span>
                         <span class="skill-tag">Azure</span>
                         <span class="skill-tag">Docker</span>
                         <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">EKS</span>
                         <span class="skill-tag">Terraform</span>
                         <span class="skill-tag">Serverless</span>
                     </div>
                 </div>
 
                 <div class="glass-card skill-category">
-                    <h3>Backend & Architecture</h3>
-                    <div class="skill-tags">
+                    <h3>Backend & Architecture 🧠</h3>
+                    <div>
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">Microservices</span>
                         <span class="skill-tag">REST APIs</span>
@@ -557,8 +283,8 @@
                 </div>
 
                 <div class="glass-card skill-category">
-                    <h3>Data & Databases</h3>
-                    <div class="skill-tags">
+                    <h3>Data & Databases 💾</h3>
+                    <div>
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">MongoDB</span>
                         <span class="skill-tag">PostgreSQL</span>
@@ -567,51 +293,32 @@
                 </div>
 
                 <div class="glass-card skill-category">
-                    <h3>DevOps & Tooling</h3>
-                    <div class="skill-tags">
+                    <h3>DevOps & Tooling 🧩</h3>
+                    <div>
                         <span class="skill-tag">GitLab CI/CD</span>
                         <span class="skill-tag">SonarQube</span>
-                        <span class="skill-tag">Azure IoT Hub</span>
                         <span class="skill-tag">Infrastructure as Code</span>
+                        <span class="skill-tag">Azure IoT Hub</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
         <div class="container">
             <div class="contact-content">
                 <h2 class="section-title">Contact</h2>
-                <p class="description">Open to backend engineering, cloud architecture, and infrastructure roles at scale-focused companies.</p>
+                <p class="description">
+                    Let’s connect 🚀<br>
+                    I’m open to backend engineering, cloud architecture, and infrastructure roles at scale-focused teams.
+                </p>
                 <div class="contact-links">
-                    <a href="mailto:leonardo.pol@outlook.com" class="contact-link">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <polyline points="22,6 12,13 2,6"/>
-                        </svg>
-                        leonardo.pol@outlook.com
-                    </a>
-                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="contact-link">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                            <rect x="2" y="9" width="4" height="12"/>
-                            <circle cx="4" cy="4" r="2"/>
-                        </svg>
-                        linkedin.com/in/leonardo-pol-3773aa207
-                    </a>
-                    <a href="https://github.com/leopoldev404" target="_blank" class="contact-link">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                        </svg>
-                        github.com/leopoldev404
-                    </a>
-                    <a href="tel:+393427802285" class="contact-link">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                        </svg>
-                        +39 342 780 2285
-                    </a>
+                    <a href="mailto:leonardo.pol@outlook.com" class="contact-link">📧 leonardo.pol@outlook.com</a>
+                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="contact-link">💼 linkedin.com/in/leonardo-pol-3773aa207</a>
+                    <a href="https://github.com/leopoldev404" target="_blank" class="contact-link">💻 github.com/leopoldev404</a>
+                    <a href="tel:+393427802285" class="contact-link">📱 +39 342 780 2285</a>
                 </div>
             </div>
         </div>
@@ -619,95 +326,21 @@
 
     <footer>
         <div class="container">
-            <p>© 2024 Leonardo Pol — Built with HTML, CSS, JavaScript</p>
+            <p>© 2025 Leonardo Pol — Built with HTML, CSS & JavaScript</p>
         </div>
     </footer>
 
     <script>
         const hamburgerButton = document.getElementById('hamburgerButton');
         const navLinksElement = document.getElementById('navLinks');
-        const navLinkItems = document.querySelectorAll('.nav-links a');
-
-        // Toggle mobile menu
         hamburgerButton.addEventListener('click', () => {
             hamburgerButton.classList.toggle('active');
             navLinksElement.classList.toggle('active');
         });
-
-        // Close mobile menu when clicking a link
-        navLinkItems.forEach(link => {
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburgerButton.classList.remove('active');
                 navLinksElement.classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (event) => {
-            const isClickInsideNav = navLinksElement.contains(event.target);
-            const isClickOnHamburger = hamburgerButton.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickOnHamburger && navLinksElement.classList.contains('active')) {
-                hamburgerButton.classList.remove('active');
-                navLinksElement.classList.remove('active');
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (event) {
-                event.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const intersectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.glass-card').forEach(card => {
-            intersectionObserver.observe(card);
-        });
-
-        // Active nav link on scroll
-        const sectionElements = document.querySelectorAll('section');
-        const navLinkElements = document.querySelectorAll('.nav-links a');
-
-        window.addEventListener('scroll', () => {
-            let currentSectionId = '';
-            
-            sectionElements.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-
-            navLinkElements.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === currentSectionId) {
-                    link.classList.add('active');
-                }
             });
         });
     </script>
