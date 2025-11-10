@@ -70,52 +70,6 @@
         .btn-secondary { border: 1px solid var(--border); background: transparent; color: var(--text-primary); }
         .btn-secondary:hover { border-color: var(--text-primary); }
 
-        .hero-layout {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.hero-image {
-  flex: 0 0 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-image img {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 1.5rem;
-  border: 2px solid var(--border);
-  background: var(--bg-glass);
-  backdrop-filter: blur(10px);
-}
-
-/* MOBILE NAV ICON */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo img {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: none;
-}
-
-/* Show icon in mobile view only */
-@media (max-width: 768px) {
-  .logo img {
-    display: block;
-  }
-}
-
         .status-indicator { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); }
         .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
@@ -192,7 +146,7 @@
 <body>
     <nav>
         <div class="container">
-            <div class="logo">leonardo.pol</div>
+            <div class="logo">LP</div>
             <button class="hamburger" id="hamburgerButton">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -209,29 +163,26 @@
 
     <!-- HERO -->
     <section id="home" class="hero">
-  <div class="container hero-layout">
-    <div class="hero-content">
-      <h1>👋 Hey, I’m Leonardo Pol</h1>
-      <div class="subtitle">Software Engineer | Cloud & Backend Specialist</div>
-      <p class="description">
-        I build scalable cloud systems, automate infrastructure, and craft reliable backend platforms.<br>
-        Over 5 years shaping resilient digital products.<br>
-        Always open to connect, collaborate, and exchange ideas 🤝
-      </p>
-      <div class="cta-buttons">
-        <a href="#contact" class="btn btn-primary">Contact</a>
-        <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="btn btn-secondary">LinkedIn</a>
-      </div>
-      <div class="status-indicator">
-        <span class="status-dot"></span>
-        Available for opportunities
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="me_ghibli_smiley.png" alt="Portrait of Leonardo Pol" />
-    </div>
-  </div>
-</section>
+        <div class="container">
+            <div class="hero-content">
+                <h1>👋 Hey, I’m Leonardo Pol</h1>
+                <div class="subtitle">Software Engineer | Cloud & Backend Specialist</div>
+                <p class="description">
+                    I build scalable cloud systems, automate infrastructure, and craft reliable backend platforms.<br>
+                    Over 5 years shaping resilient digital products.<br>
+                    Always open to connect, collaborate, and exchange ideas 🤝
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact</a>
+                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Available for opportunities
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- EXPERIENCE -->
     <section id="experience">
@@ -310,12 +261,11 @@
                 <div class="glass-card skill-category">
                     <h3>Cloud & Infrastructure ☁️</h3>
                     <div>
-                        <span class="skill-tag">GCP</span>
-                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Google Cloud</span>
+                        <span class="skill-tag">Microsoft Azure</span>
+                        <span class="skill-tag">AWS</span>
                         <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Serverless</span>
+                        <span class="skill-tag">EKS</span>
                     </div>
                 </div>
 
@@ -328,26 +278,33 @@
                         <span class="skill-tag">ETL Pipelines</span>
                         <span class="skill-tag">Big Data</span>
                         <span class="skill-tag">IoT</span>
+                        <span class="skill-tag">.NET</span>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">Javascript</span>
+                        <span class="skill-tag">Angular</span>
                     </div>
                 </div>
 
                 <div class="glass-card skill-category">
-                    <h3>Data & Databases 💾</h3>
+                    <h3>Databases 🌐</h3>
                     <div>
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">CosmosDB</span>
                         <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Graph Databases</span>
+                        <span class="skill-tag">Neo4J</span>
                     </div>
                 </div>
 
                 <div class="glass-card skill-category">
                     <h3>DevOps & Tooling 🧩</h3>
                     <div>
-                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">GitLab</span>
+                        <span class="skill-tag">Azure DevOps</span>
                         <span class="skill-tag">SonarQube</span>
                         <span class="skill-tag">Infrastructure as Code</span>
-                        <span class="skill-tag">Azure IoT Hub</span>
                     </div>
                 </div>
             </div>
