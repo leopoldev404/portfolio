@@ -1,935 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leonardo Pol - Software Engineer</title>
-    <link rel="icon" href="me.png" type="image/png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      /* CSS styles embedded directly */
-      :root {
-        /* Light Theme (default) - Pure Black & White */
-        --main-bg: #ffffff; /* Pure White background for body */
-        --main-text: #000000; /* Pure Black text for body */
-        --primary-color: #000000; /* Dark elements like Header/Footer background, main headings */
-        --secondary-color: #000000; /* Accents like borders, bullet points, underlines */
-        --accent-color: #000000; /* Subtle highlights */
-        --card-bg: #ffffff; /* White card background */
-        --border-color: #000000; /* Strong black borders */
-        --link-hover-color: #ffffff; /* This variable is now used more selectively */
-        --stars-color: #000000; /* Stars on white background */
-
-        /* Header/Footer Text Color (adapts for contrast with primary-color background) */
-        --header-footer-text-color: #ffffff;
-        /* Hamburger line color (adapta for contrast with primary-color background) */
-        --hamburger-line-color: #ffffff;
-      }
-
-      /* Dark Theme overrides are now removed as it's no longer needed */
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-        line-height: 1.6;
-        background-color: var(--main-bg);
-        color: var(--main-text);
-        transition: background-color 0.4s ease, color 0.4s ease;
-        scroll-behavior: smooth;
-      }
-
-      a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: color 0.3s ease, text-decoration 0.3s ease; /* Added text-decoration transition */
-      }
-
-      /* Modified a:hover to only add underline by default */
-      a:hover {
-        /* color: var(--link-hover-color); /* REMOVED: This was causing the issue */
-        text-decoration: underline;
-      }
-
-      /* Header */
-      header {
-        background-color: var(--primary-color);
-        color: var(
-          --header-footer-text-color
-        ); /* Dynamically adapt text color */
-        padding: 20px 0;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer, more spread shadow */
-      }
-
-      .profile-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .profile-icon {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: 50% 15%;
-        border: 6px solid var(--header-footer-text-color); /* Dynamically adapt border color */
-        margin-bottom: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Slightly more prominent shadow for the icon */
-        animation: fadeIn 1s ease-out;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      header h1 {
-        margin: 10px 0 5px;
-        font-size: 3em;
-        letter-spacing: 1px;
-        color: var(
-          --header-footer-text-color
-        ); /* Dynamically adapt text color */
-      }
-
-      header p {
-        margin: 0;
-        font-size: 1.4em;
-        color: var(
-          --header-footer-text-color
-        ); /* Dynamically adapt text color */
-      }
-
-      /* Theme Toggle Button (CSS rules for it are no longer needed) */
-
-      /* Navigation (for desktop) */
-      nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-
-      nav a {
-        color: var(
-          --header-footer-text-color
-        ); /* Dynamically adapt link text color */
-        font-weight: 600;
-        padding: 8px 15px;
-        border-radius: 25px;
-        transition: background-color 0.3s ease, transform 0.2s ease,
-          color 0.3s ease; /* Added color transition */
-      }
-
-      /* Explicitly set color for nav links on hover */
-      nav a:hover {
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.1
-        ); /* Transparent white for hover on dark background */
-        text-decoration: none; /* No underline for nav links on hover */
-        transform: translateY(-2px);
-        color: var(--header-footer-text-color); /* Keep text white on hover */
-      }
-
-      /* body.dark-theme nav a:hover is now removed */
-
-      /* Hamburger Menu Styles */
-      .hamburger-menu {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 22px;
-        cursor: pointer;
-        position: absolute;
-        top: 30px;
-        left: 20px;
-        z-index: 1001;
-      }
-
-      .hamburger-menu span {
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: var(
-          --hamburger-line-color
-        ); /* Dynamically adapt line color */
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
-      }
-
-      .hamburger-menu.open span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-      }
-
-      .hamburger-menu.open span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .hamburger-menu.open span:nth-child(3) {
-        transform: translateY(-10px) rotate(-45deg);
-      }
-
-      .mobile-nav-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8); /* Transparent black overlay */
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        z-index: 1000;
-        transition: opacity 0.3s ease;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .mobile-nav-overlay.open {
-        display: block;
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .mobile-nav {
-        position: fixed;
-        top: -100vh; /* Start above the viewport */
-        left: 0;
-        width: 100%;
-        height: 100vh; /* Make it 100% of viewport height */
-        background-color: var(--primary-color);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Still allows subtle shadow */
-        padding-top: 80px;
-        transition: top 0.3s ease-in-out;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .mobile-nav.open {
-        top: 0; /* Drop down to top of viewport */
-      }
-
-      .mobile-nav ul {
-        list-style: none;
-        padding: 0;
-        width: 100%;
-        display: flex; /* Use flexbox for centering */
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Center items horizontally */
-      }
-
-      .mobile-nav ul li {
-        width: 100%;
-      }
-
-      .mobile-nav ul li a {
-        display: block;
-        padding: 15px 20px;
-        color: var(
-          --header-footer-text-color
-        ); /* Dynamically adapt link text color */
-        font-weight: 600;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Transparent white border */
-        transition: background-color 0.3s ease;
-        text-align: center; /* Center text within each link block */
-      }
-
-      .mobile-nav ul li a:hover {
-        background-color: rgba(
-          255,
-          255,
-          255,
-          0.2
-        ); /* Transparent white for hover */
-        text-decoration: none;
-      }
-
-      /* body.dark-theme .mobile-nav ul li a:hover is now removed */
-
-      /* Sections */
-      section {
-        padding: 60px 0;
-        border-bottom: 1px solid var(--border-color);
-        text-align: center;
-        opacity: 0;
-        transition: opacity 1s ease-out;
-      }
-
-      section.fade-in-section {
-        opacity: 1;
-      }
-
-      section:last-of-type {
-        border-bottom: none;
-      }
-
-      h2 {
-        margin-bottom: 40px;
-        color: var(--primary-color);
-        font-size: 2.5em;
-        position: relative;
-        display: inline-block;
-      }
-
-      h2::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 3px;
-        background-color: var(--secondary-color);
-        border-radius: 2px;
-      }
-
-      /* About Section */
-      #about p {
-        max-width: 800px;
-        margin: 0 auto 20px auto;
-        font-size: 1.1em;
-        line-height: 1.8;
-        color: var(--main-text);
-      }
-
-      /* Professional Experience - Carousel (previously grid) */
-      .experience-grid {
-        display: flex; /* Changed from grid to flex for horizontal layout */
-        overflow-x: auto; /* Enables horizontal scrolling */
-        scroll-snap-type: x mandatory; /* Makes cards snap into place */
-        -webkit-overflow-scrolling: touch; /* Smoother scrolling on iOS devices */
-        gap: 30px; /* Space between cards */
-        margin-top: 30px;
-        padding: 0 20px; /* Horizontal padding for the scrollable area */
-        justify-content: flex-start; /* Aligns cards to the start of the container */
-        align-items: flex-start; /* Aligns cards to the top */
-      }
-
-      .job-card {
-        flex: 0 0 auto; /* Prevent cards from shrinking/growing, make them fixed width */
-        width: 300px; /* Explicit width for each card in the carousel */
-        scroll-snap-align: start; /* Each card will snap to the start of the scroll container */
-        border-radius: 16px; /* Increased border-radius for softer corners */
-        padding: 30px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Lighter initial shadow */
-        text-align: left;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background-color: var(--card-bg); /* Ensure card background is set */
-      }
-
-      .job-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* More pronounced hover shadow */
-      }
-
-      .job-card h3 {
-        margin-top: 0;
-        color: var(--primary-color);
-        font-size: 1.5em;
-        margin-bottom: 5px;
-      }
-
-      .job-card .job-title {
-        font-weight: 600;
-        margin-bottom: 5px;
-        color: var(--main-text);
-        display: block;
-        font-size: 1.1em;
-      }
-
-      .job-card .job-location-period {
-        font-style: italic;
-        color: var(--main-text);
-        margin-bottom: 15px;
-        display: block;
-        font-weight: 300;
-        font-size: 0.95em;
-      }
-
-      .job-card ul {
-        list-style: none;
-        padding: 0;
-        margin-top: 20px;
-      }
-
-      .job-card li {
-        position: relative;
-        padding-left: 25px;
-        margin-bottom: 10px;
-        font-size: 1em;
-      }
-
-      .job-card li::before {
-        content: "•";
-        color: var(--secondary-color);
-        font-size: 1.2em;
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
-
-      /* Certifications Section */
-      .certification-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        margin-top: 30px;
-      }
-
-      .certification-card {
-        background-color: var(--card-bg);
-        /* border: 1px solid var(--border-color); /* REMOVED */
-        border-radius: 16px; /* Increased border-radius for softer corners */
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Lighter initial shadow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .certification-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* More pronounced hover shadow */
-      }
-
-      .certification-card h3 {
-        color: var(--primary-color);
-        font-size: 1.2em;
-        margin-top: 0;
-        margin-bottom: 10px;
-      }
-
-      .certification-card p {
-        font-size: 0.95em;
-        color: var(--main-text);
-        margin-bottom: 15px;
-      }
-
-      .certification-card .cert-link {
-        display: inline-block;
-        background-color: var(--primary-color); /* Black in light */
-        color: var(--header-footer-text-color); /* White in light */
-        padding: 8px 15px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        font-weight: 600;
-        transition: background-color 0.3s ease, color 0.3s ease,
-          transform 0.2s ease;
-      }
-
-      .certification-card .cert-link:hover {
-        background-color: var(--header-footer-text-color); /* Swap background */
-        color: var(--primary-color); /* Swap text color */
-        transform: translateY(-2px);
-        text-decoration: none;
-      }
-
-      /* Feedback Section */
-      .feedback-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin-top: 30px;
-      }
-
-      .feedback-card {
-        background-color: var(--card-bg);
-        /* border: 1px solid var(--border-color); /* REMOVED */
-        border-radius: 16px; /* Increased border-radius for softer corners */
-        padding: 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Lighter initial shadow */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .feedback-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* More pronounced hover shadow */
-      }
-
-      .reviewer-info {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 15px;
-        flex-wrap: wrap;
-        text-align: center;
-        width: 100%;
-      }
-
-      .reviewer-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        object-fit: cover;
-        /* border: 3px solid var(--secondary-color); /* REMOVED */
-        margin-bottom: 0;
-      }
-
-      .reviewer-name {
-        font-weight: bold;
-        color: var(--primary-color);
-        font-size: 1.1em;
-        margin-bottom: 0;
-      }
-
-      .stars {
-        color: var(--stars-color);
-        font-size: 1.1em; /* Adjusted font size for compact text */
-        margin-bottom: 0;
-        white-space: nowrap; /* Prevent "5/5 ⭐" from wrapping */
-      }
-
-      .feedback-card p {
-        font-style: italic;
-        color: var(--main-text);
-        font-size: 0.95em;
-        margin-top: 0;
-      }
-
-      /* Contact Section */
-      #contact {
-        text-align: center;
-        padding-bottom: 60px;
-      }
-
-      #contact p {
-        margin-bottom: 15px;
-        font-size: 1.1em;
-      }
-
-      /* Footer */
-      footer {
-        background-color: var(--primary-color);
-        color: var(
-          --header-footer-text-color
-        ); /* Dynamically adapt text color */
-        text-align: center;
-        padding: 25px 0;
-        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Softer, more spread shadow */
-      }
-
-      /* Container (max 1200px and 80% width) */
-      .container {
-        max-width: 1200px; /* Adjusted from 1000px to 1200px */
-        width: 80%; /* Set to 80% of the parent's width */
-        margin: 0 auto; /* Center the container */
-        padding: 20px;
-        position: relative;
-      }
-
-      /* Responsive design */
-      @media (max-width: 768px) {
-        header h1 {
-          font-size: 2.2em;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        header p {
-          font-size: 1.1em;
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #141414;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border: #1a1a1a;
+            --border-hover: #333333;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         nav {
-          display: none;
-        }
-        .hamburger-menu {
-          display: flex;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.25rem 0;
+            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
         }
 
-        h2 {
-          font-size: 2em;
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* For smaller screens, ensure carousel cards have proper spacing and scrolling */
+        .logo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 8rem 0 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero {
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-content .description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.875rem 1.75rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--text-secondary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .glass-card:hover {
+            border-color: var(--border-hover);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
         .experience-grid {
-          padding: 0 15px; /* Adjust padding for smaller screens */
-          /* Ensure cards are visible by scrolling horizontally */
+            display: grid;
+            gap: 2rem;
         }
 
-        .job-card {
-          padding: 25px;
-          /* Keep card width fixed for consistent scrolling */
+        .experience-item {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 2rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
 
-        .feedback-grid,
-        .certification-grid {
-          grid-template-columns: 1fr;
-          padding: 0 15px;
+        .experience-item:nth-child(1) { animation-delay: 0.1s; }
+        .experience-item:nth-child(2) { animation-delay: 0.2s; }
+        .experience-item:nth-child(3) { animation-delay: 0.3s; }
+        .experience-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .experience-date {
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.875rem;
         }
 
-        /* Theme toggle button specific CSS removed */
-      }
-
-      @media (max-width: 480px) {
-        .container {
-          padding: 15px;
-          width: 90%; /* Increase width for smaller screens to ensure content fits well */
+        .experience-company {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
         }
 
-        header h1 {
-          font-size: 1.8em;
+        .experience-details h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
-        header p {
-          font-size: 1em;
+        .experience-details ul {
+            margin-top: 1rem;
+            padding-left: 1.25rem;
+            color: var(--text-secondary);
         }
 
-        .profile-icon {
-          width: 100px;
-          height: 100px;
+        .experience-details li {
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.7;
         }
 
-        .hamburger-menu {
-          top: 25px;
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
         }
 
-        .mobile-nav {
-          width: 100%;
+        .skill-category h3 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
-        h2 {
-          font-size: 1.8em;
-          margin-bottom: 30px;
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
 
-        #about p,
-        #contact p {
-          font-size: 1em;
+        .skill-tag {
+            padding: 0.5rem 0.875rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+            font-weight: 500;
         }
 
-        .job-card h3 {
-          font-size: 1.3em;
+        .skill-tag:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
         }
-        .job-card li {
-          font-size: 0.9em;
+
+        .contact-content {
+            max-width: 600px;
         }
-      }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.875rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .contact-link:hover {
+            color: var(--text-primary);
+        }
+
+        .contact-link svg {
+            opacity: 0.5;
+        }
+
+        footer {
+            padding: 2rem 0;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                max-width: 300px;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .experience-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                text-align: center;
+            }
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="profile-header">
-          <img src="me.png" alt="Leonardo Pol" class="profile-icon" />
-          <h1>Leonardo Pol</h1>
-          <p>Software Engineer</p>
-        </div>
-        <nav id="desktop-nav">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#feedback">Feedback</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="hamburger-menu" id="hamburger-menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
-
-        <nav class="mobile-nav" id="mobile-nav">
-          <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#feedback">Feedback</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <section id="about" class="container">
-        <h2>About Me</h2>
-        <p>
-          Over five years of experience, I have excelled in optimizing
-          resources, identifying efficient alternatives, and driving impactful
-          results across diverse tech projects.
-        </p>
-        <p>
-          From designing robust APIs and Big Data pipelines to building
-          cutting-edge IoT infrastructures and Serverless architectures, I bring
-          a strategic mindset to reduce costs while maintaining high
-          performance.
-        </p>
-        <p>
-          A collaborative leader, I thrive in fostering team synergy, empowering
-          cross-functional teams to work cohesively and deliver exceptional
-          outcomes.
-        </p>
-      </section>
-
-      <section id="experience" class="container">
-        <h2>Professional Experience</h2>
-
-        <div class="experience-grid">
-          <div class="job-card">
-            <h3>Safety21</h3>
-            <p class="job-title">Software Engineer</p>
-            <p class="job-location-period">Padova, Jun 2024 - Present</p>
-            <ul>
-              <li>
-                Maintain and enhance mission-critical applications supporting
-                public safety operations for police headquarters and government
-                agencies, ensuring high availability and performance.
-              </li>
-              <li>
-                Drive infrastructure modernization with a cloud-first approach,
-                leveraging containerization, microservices, and
-                infrastructure-as-code to transform legacy systems.
-              </li>
-              <li>
-                Lead the migration of on-premise applications to the cloud,
-                prioritizing scalability, security, and cost-efficiency.
-              </li>
-              <li>
-                Refactor legacy applications for cloud deployment, integrating
-                cloud architecture best practices and DevOps methodologies.
-              </li>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">leonardo.pol</div>
+            <button class="hamburger" id="hamburgerButton" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">home</a></li>
+                <li><a href="#experience">experience</a></li>
+                <li><a href="#skills">skills</a></li>
+                <li><a href="#contact">contact</a></li>
             </ul>
-          </div>
-
-          <div class="job-card">
-            <h3>Capgemini</h3>
-            <p class="job-title">Senior Consultant</p>
-            <p class="job-location-period">Venice, Jun 2022 - Jun 2024</p>
-            <ul>
-              <li>
-                Optimized CI/CD pipelines for containerized applications using
-                Docker, EKS, SonarQube, and GitLab, significantly reducing
-                deployment times and enhancing project delivery efficiency.
-              </li>
-              <li>
-                Led the development team composed by 22 devs for building
-                Python-based microservices in the telecommunications sector,
-                driving innovation and scalability in complex systems.
-              </li>
-            </ul>
-          </div>
-
-          <div class="job-card">
-            <h3>Avanade</h3>
-            <p class="job-title">Analyst - Backend Developer</p>
-            <p class="job-location-period">Padova, Apr 2021 - Jun 2022</p>
-            <ul>
-              <li>
-                Spearheaded the development of containerized backend
-                applications to collect and process satellite data from external
-                providers.
-              </li>
-              <li>
-                Designed and implemented an ETL pipeline for efficient satellite
-                data processing.
-              </li>
-              <li>
-                Built and managed an IoT infrastructure using Azure IoT Hub,
-                enabling seamless data collection and analysis from hundreds of
-                IoT devices.
-              </li>
-            </ul>
-          </div>
-
-          <div class="job-card">
-            <h3>Texa</h3>
-            <p class="job-title">Cloud&Software Developer</p>
-            <p class="job-location-period">
-              Monastier, Treviso, Jan 2020 - Apr 2021
-            </p>
-            <ul>
-              <li>
-                Developed a Full-Stack Web Extension to streamline Azure
-                resource management, enabling cost tracking and project-specific
-                resource utilization using SQL and Graph Databases.
-              </li>
-              <li>
-                Optimized the existing cloud infrastructure by implementing best
-                practices, suchs as efficient storage options, log management,
-                and VM resizing, resulting in reduced costs and improved
-                efficiency.
-              </li>
-            </ul>
-          </div>
         </div>
-      </section>
+    </nav>
 
-      <section id="certifications" class="container">
-        <h2>Certifications</h2>
-        <div class="certification-grid">
-          <div class="certification-card">
-            <h3>[Certification Name 1]</h3>
-            <p>Issued by [Issuing Organization]</p>
-            <p>[Date Achieved]</p>
-            <a href="#" class="cert-link" target="_blank">View Credential</a>
-          </div>
-          <div class="certification-card">
-            <h3>[Certification Name 2]</h3>
-            <p>Issued by [Issuing Organization]</p>
-            <p>[Date Achieved]</p>
-            <a href="#" class="cert-link" target="_blank">View Credential</a>
-          </div>
-          <div class="certification-card">
-            <h3>[Certification Name 3]</h3>
-            <p>Issued by [Issuing Organization]</p>
-            <p>[Date Achieved]</p>
-            <a href="#" class="cert-link" target="_blank">View Credential</a>
-          </div>
-        </div>
-        <p style="margin-top: 30px; font-size: 0.9em; color: var(--main-text)">
-          Please replace the placeholder content above with your actual
-          certification details.
-        </p>
-      </section>
-
-      <section id="feedback" class="container">
-        <h2>Feedback</h2>
-        <div class="feedback-grid">
-          <div class="feedback-card">
-            <div class="reviewer-info">
-              <img src="dev_girl.jpg" alt="Monylin" class="reviewer-icon" />
-              <p class="reviewer-name">Monylin</p>
-              <div class="stars">5/5 ⭐</div>
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Leonardo Pol</h1>
+                <div class="subtitle">Software Engineer</div>
+                <p class="description">
+                    5+ years shipping scalable infrastructure. Specializing in cloud architecture, backend systems, and DevOps pipelines. Currently modernizing mission-critical applications at Safety21.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact</a>
+                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    Available for opportunities
+                </div>
             </div>
-            <p>
-              "Working with Leonardo was an absolute pleasure. His deep
-              understanding of cloud architecture and ability to deliver complex
-              projects on time and within budget is truly remarkable!"
-            </p>
-          </div>
-          <div class="feedback-card">
-            <div class="reviewer-info">
-              <img src="sam.png" alt="Sam" class="reviewer-icon" />
-              <p class="reviewer-name">Sam</p>
-              <div class="stars">5/5 ⭐</div>
-            </div>
-            <p>
-              "Leonardo is a true team player and an inspiring leader. He
-              consistently fosters a collaborative environment, leading to
-              exceptional outcomes. Highly recommend!"
-            </p>
-          </div>
-          <div class="feedback-card">
-            <div class="reviewer-info">
-              <img src="shooter.png" alt="Kaneki" class="reviewer-icon" />
-              <p class="reviewer-name">Kaneki</p>
-              <div class="stars">5/5 ⭐</div>
-            </div>
-            <p>
-              "Leonardo's expertise in optimizing CI/CD pipelines and his
-              strategic mindset for cost reduction while maintaining performance
-              are invaluable. A great asset to any team."
-            </p>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>
-          Email:
-          <a href="mailto:leonardo.pol@outlook.com">leonardo.pol@outlook.com</a>
-        </p>
-        <p>Phone: 3427802285</p>
-        <p>
-          LinkedIn:
-          <a
-            href="https://www.linkedin.com/in/leonardo-pol-3773aa207"
-            target="_blank"
-          >
-            linkedin.com/in/leonardo-pol
-          </a>
-        </p>
-        <p>
-          GitHub:
-          <a href="https://github.com/leopoldev404" target="_blank"
-            >github.com/leopoldev404</a
-          >
-        </p>
-      </section>
-    </main>
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-grid">
+                <div class="glass-card experience-item">
+                    <div class="experience-timeline">
+                        <div class="experience-date">Jun 2024 — Present</div>
+                        <div class="experience-company">Safety21</div>
+                    </div>
+                    <div class="experience-details">
+                        <h3>Software Engineer</h3>
+                        <ul>
+                            <li>Maintain mission-critical systems supporting public safety operations for police headquarters and government agencies</li>
+                            <li>Drive infrastructure modernization through containerization, microservices architecture, and infrastructure-as-code</li>
+                            <li>Lead on-premise to cloud migration initiatives with emphasis on scalability, security, and cost optimization</li>
+                            <li>Refactor legacy applications integrating cloud-native patterns and DevOps best practices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card experience-item">
+                    <div class="experience-timeline">
+                        <div class="experience-date">Jun 2022 — Jun 2024</div>
+                        <div class="experience-company">Capgemini</div>
+                    </div>
+                    <div class="experience-details">
+                        <h3>Senior Consultant</h3>
+                        <ul>
+                            <li>Optimized CI/CD pipelines using Docker, EKS, SonarQube, and GitLab reducing deployment time by 40%</li>
+                            <li>Led 22-member engineering team building Python microservices for telecommunications infrastructure</li>
+                            <li>Architected containerized backend systems for real-time satellite data collection and processing</li>
+                            <li>Designed ETL pipeline handling 10TB+ satellite data with 99.9% uptime</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card experience-item">
+                    <div class="experience-timeline">
+                        <div class="experience-date">Apr 2021 — Jun 2022</div>
+                        <div class="experience-company">Avanade</div>
+                    </div>
+                    <div class="experience-details">
+                        <h3>Analyst | Backend Developer</h3>
+                        <ul>
+                            <li>Built IoT infrastructure on Azure IoT Hub managing data streams from 500+ connected devices</li>
+                            <li>Developed full-stack web extension for Azure resource management and cost allocation tracking</li>
+                            <li>Implemented hybrid SQL and Graph database architecture for complex resource relationship mapping</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card experience-item">
+                    <div class="experience-timeline">
+                        <div class="experience-date">Jan 2020 — Apr 2021</div>
+                        <div class="experience-company">TEXA</div>
+                    </div>
+                    <div class="experience-details">
+                        <h3>Cloud & Software Developer</h3>
+                        <ul>
+                            <li>Optimized cloud infrastructure reducing operational costs by 30% through storage tiering and resource right-sizing</li>
+                            <li>Implemented centralized logging and monitoring stack improving incident response time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Stack</h2>
+            <div class="skills-grid">
+                <div class="glass-card skill-category">
+                    <h3>Cloud & Infrastructure</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Google Cloud Platform</span>
+                        <span class="skill-tag">Azure</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">EKS</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Serverless</span>
+                    </div>
+                </div>
+
+                <div class="glass-card skill-category">
+                    <h3>Backend & Architecture</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Microservices</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">ETL Pipelines</span>
+                        <span class="skill-tag">Big Data</span>
+                        <span class="skill-tag">IoT</span>
+                    </div>
+                </div>
+
+                <div class="glass-card skill-category">
+                    <h3>Data & Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Graph Databases</span>
+                    </div>
+                </div>
+
+                <div class="glass-card skill-category">
+                    <h3>DevOps & Tooling</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">SonarQube</span>
+                        <span class="skill-tag">Azure IoT Hub</span>
+                        <span class="skill-tag">Infrastructure as Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Contact</h2>
+                <p class="description">Open to backend engineering, cloud architecture, and infrastructure roles at scale-focused companies.</p>
+                <div class="contact-links">
+                    <a href="mailto:leonardo.pol@outlook.com" class="contact-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        leonardo.pol@outlook.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="contact-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                        linkedin.com/in/leonardo-pol-3773aa207
+                    </a>
+                    <a href="https://github.com/leopoldev404" target="_blank" class="contact-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                        github.com/leopoldev404
+                    </a>
+                    <a href="tel:+393427802285" class="contact-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        +39 342 780 2285
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-      <div class="container">
-        <p>&copy; 2025 Leonardo Pol. All rights reserved.</p>
-      </div>
+        <div class="container">
+            <p>© 2024 Leonardo Pol — Built with HTML, CSS, JavaScript</p>
+        </div>
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // Hamburger menu functionality
-        const hamburgerMenu = document.getElementById("hamburger-menu");
-        const mobileNav = document.getElementById("mobile-nav");
-        const mobileNavOverlay = document.getElementById("mobile-nav-overlay");
-        const mobileNavLinks = document.querySelectorAll("#mobile-nav a");
+        const hamburgerButton = document.getElementById('hamburgerButton');
+        const navLinksElement = document.getElementById('navLinks');
+        const navLinkItems = document.querySelectorAll('.nav-links a');
 
-        function toggleMobileMenu() {
-          hamburgerMenu.classList.toggle("open");
-          mobileNav.classList.toggle("open");
-          mobileNavOverlay.classList.toggle("open");
-          document.body.style.overflow = mobileNav.classList.contains("open")
-            ? "hidden"
-            : "";
-        }
-
-        hamburgerMenu.addEventListener("click", toggleMobileMenu);
-        mobileNavOverlay.addEventListener("click", toggleMobileMenu);
-
-        mobileNavLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            setTimeout(toggleMobileMenu, 300);
-          });
+        // Toggle mobile menu
+        hamburgerButton.addEventListener('click', () => {
+            hamburgerButton.classList.toggle('active');
+            navLinksElement.classList.toggle('active');
         });
 
-        // Smooth scrolling for all navigation links (desktop and mobile)
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute("href")).scrollIntoView({
-              behavior: "smooth",
+        // Close mobile menu when clicking a link
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerButton.classList.remove('active');
+                navLinksElement.classList.remove('active');
             });
-          });
         });
 
-        // Section fade-in on load
-        const sections = document.querySelectorAll("section");
-        sections.forEach((section) => {
-          section.classList.add("fade-in-section");
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            const isClickInsideNav = navLinksElement.contains(event.target);
+            const isClickOnHamburger = hamburgerButton.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickOnHamburger && navLinksElement.classList.contains('active')) {
+                hamburgerButton.classList.remove('active');
+                navLinksElement.classList.remove('active');
+            }
         });
 
-        // Theme toggle functionality has been removed,
-        // the site will now always load in the light theme.
-      });
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            intersectionObserver.observe(card);
+        });
+
+        // Active nav link on scroll
+        const sectionElements = document.querySelectorAll('section');
+        const navLinkElements = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            
+            sectionElements.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinkElements.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
