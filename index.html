@@ -11,13 +11,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #000;
-            --bg-glass: rgba(255, 255, 255, 0.05);
-            --bg-glass-hover: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.1);
-            --text-primary: #fff;
-            --text-secondary: #a0a0a0;
-            --accent: #4ade80;
+            --bg-primary: #0A1319;   /* deep navy/black-blue background */
+            --bg-secondary: #111B23; /* slightly lighter for cards, backgrounds */
+            --text-primary: #EAF4FF;  /* very light blue/white for main text */
+            --text-secondary: #8AA7C0;/* muted blue for secondary text */
+            --accent: #3FD7FF;        /* bright cyan/aqua accent (Turso has aqua variant) */
+            --border: #1F2C35;        /* border color: dark slate */
+            --hover: #244151;         /* hover background for glass cards */
         }
 
         body {
@@ -65,10 +65,22 @@
         .hero-content .description { color: var(--text-secondary); max-width: 640px; margin-bottom: 2.5rem; font-size: 1rem; }
         .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
         .btn { padding: 0.875rem 1.75rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s; text-decoration: none; border-radius: 0.75rem; }
-        .btn-primary { background: var(--text-primary); color: #000; }
-        .btn-primary:hover { background: var(--text-secondary); }
-        .btn-secondary { border: 1px solid var(--border); background: transparent; color: var(--text-primary); }
-        .btn-secondary:hover { border-color: var(--text-primary); }
+        .btn-primary {
+  background: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+.btn-primary:hover {
+  background: #32cbe0; /* slightly darker accent */
+}
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
 
         .status-indicator { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); }
         .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
@@ -76,14 +88,16 @@
 
         /* GLASS CARD */
         .glass-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-        .glass-card:hover { background: var(--bg-glass-hover); border-color: var(--accent); }
+  background: rgba(255,255,255,0.04); /* keep low opacity */
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: all 0.3s;
+}
+.glass-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: var(--color-accent);
+}
 
         /* EXPERIENCE */
         .experience-grid { display: grid; gap: 2rem; }
