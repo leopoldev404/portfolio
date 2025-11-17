@@ -1,353 +1,843 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leonardo Pol — Software Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo Pol | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        /* CSS Custom Properties - Cyberpunk Theme */
         :root {
-            --bg-primary: #000;
-            --bg-glass: rgba(255, 255, 255, 0.05);
-            --bg-glass-hover: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.1);
-            --text-primary: #fff;
-            --text-secondary: #a0a0a0;
-            --accent: #4ade80;
+            /* Cyberpunk Color Palette */
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff9d;
+            --neon-yellow: #ffeb00;
+            
+            /* Dark Theme Base */
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-glass: rgba(26, 26, 37, 0.8);
+            --bg-glass-border: rgba(0, 243, 255, 0.2);
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8cc;
+            --text-muted: #8a8aa0;
+            
+            /* Typography Scale */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* Spacing Scale */
+            --space-xs: 0.5rem;
+            --space-sm: 0.75rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+            
+            /* Effects */
+            --glow-blue: 0 0 10px rgba(0, 243, 255, 0.5);
+            --glow-pink: 0 0 10px rgba(255, 0, 255, 0.5);
+            --glow-purple: 0 0 10px rgba(157, 0, 255, 0.5);
+            --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
             color: var(--text-primary);
-            font-size: 15px;
-            line-height: 1.7;
+            background: var(--bg-primary);
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 0;
+        /* Cyberpunk Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
         }
 
-        nav .container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 1rem; }
-        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-        .hamburger-line { width: 24px; height: 2px; background: var(--text-primary); transition: all 0.3s; }
-        .hamburger.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .hamburger.active .hamburger-line:nth-child(2) { opacity: 0; }
-        .hamburger.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-
-        /* SECTIONS */
-        section { min-height: 100vh; padding: 8rem 0 4rem; display: flex; align-items: center; }
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; }
-
-        /* HERO */
-        .hero-content h1 { font-size: 3rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .hero-content .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
-        .hero-content .description { color: var(--text-secondary); max-width: 640px; margin-bottom: 2.5rem; font-size: 1rem; }
-        .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .btn { padding: 0.875rem 1.75rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500; border: none; cursor: pointer; transition: all 0.3s; text-decoration: none; border-radius: 0.75rem; }
-        .btn-primary { background: var(--text-primary); color: #000; }
-        .btn-primary:hover { background: var(--text-secondary); }
-        .btn-secondary { border: 1px solid var(--border); background: transparent; color: var(--text-primary); }
-        .btn-secondary:hover { border-color: var(--text-primary); }
-
-        .status-indicator { margin-top: 1.5rem; display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--text-secondary); }
-        .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
-
-        /* GLASS CARD */
-        .glass-card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: all 0.3s;
+        h1 { 
+            font-size: var(--text-4xl);
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-blue);
         }
-        .glass-card:hover { background: var(--bg-glass-hover); border-color: var(--accent); }
 
-        /* EXPERIENCE */
-        .experience-grid { display: grid; gap: 2rem; }
-        .experience-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; align-items: start; }
-        .experience-date { font-weight: 600; color: var(--text-primary); }
-        .experience-company { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
-        .experience-details h3 { margin-bottom: 1rem; }
-        .experience-details li { margin-bottom: 0.75rem; color: var(--text-secondary); font-size: 0.9rem; }
+        h2 { 
+            font-size: var(--text-3xl);
+            color: var(--neon-blue);
+            text-shadow: var(--glow-blue);
+        }
 
-        /* SKILLS */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .skill-category h3 { margin-bottom: 1rem; }
-        .skill-tag {
-            display: inline-block;
-            padding: 0.5rem 0.875rem;
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            font-size: 0.8rem;
+        h3 { 
+            font-size: var(--text-2xl);
+            color: var(--neon-pink);
+            text-shadow: var(--glow-pink);
+        }
+
+        h4 { 
+            font-size: var(--text-xl);
+            color: var(--neon-green);
+        }
+
+        p, li {
+            font-size: var(--text-base);
+            line-height: 1.6;
             color: var(--text-secondary);
-            transition: all 0.3s;
-            margin: 0.3rem;
         }
-        .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* CONTACT */
-        .contact-content { max-width: 600px; margin: 0 auto; }
-        .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
-        .contact-link {
+        .text-lead {
+            font-size: var(--text-lg);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .text-muted {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        .grid {
+            display: grid;
+            gap: var(--space-lg);
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Cyberpunk Cards */
+        .card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--bg-glass-border);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-dark);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--neon-blue);
+        }
+
+        /* Cyberpunk Chips */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            margin-right: var(--space-sm);
+            margin-bottom: var(--space-sm);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .chip-blue {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-blue);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+
+        .chip-pink {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--neon-pink);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+
+        .chip-purple {
+            background: rgba(157, 0, 255, 0.1);
+            color: var(--neon-purple);
+            border: 1px solid rgba(157, 0, 255, 0.3);
+        }
+
+        .chip-green {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--neon-green);
+            border: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        .chip-yellow {
+            background: rgba(255, 235, 0, 0.1);
+            color: var(--neon-yellow);
+            border: 1px solid rgba(255, 235, 0, 0.3);
+        }
+
+        .chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px currentColor;
+        }
+
+        .chip-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Animated Navigation Button */
+        .nav-button {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: 60px;
+            height: 60px;
+            background: rgba(26, 26, 37, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            background: var(--bg-glass);
-            backdrop-filter: blur(15px);
-            transition: all 0.3s;
+            justify-content: center;
+            box-shadow: var(--shadow-dark), var(--glow-blue);
         }
-        .contact-link:hover { color: var(--accent); border-color: var(--accent); background: var(--bg-glass-hover); }
 
-        /* FOOTER */
-        footer { padding: 2rem 0; color: var(--text-secondary); border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; }
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--neon-blue);
+            background: rgba(26, 26, 37, 0.9);
+        }
 
-        /* RESPONSIVE */
+        .nav-button.up .arrow {
+            transform: rotate(-180deg);
+        }
+
+        .arrow {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .arrow path {
+            stroke: var(--neon-blue);
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-button:hover .arrow path {
+            stroke: var(--neon-pink);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--space-3xl) 0 var(--space-2xl);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero .text-lead {
+            margin-bottom: var(--space-xl);
+        }
+
+        .contact-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Experience Section */
+        section {
+            margin: var(--space-2xl) 0;
+            padding-bottom: var(--space-2xl);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+            color: var(--text-secondary);
+        }
+
+        .experience-card {
+            margin-bottom: var(--space-xl);
+        }
+
+        .experience-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+            align-items: start;
+        }
+
+        .job-title {
+            color: var(--neon-pink);
+            margin-bottom: var(--space-xs);
+        }
+
+        .company {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .date {
+            color: var(--neon-green);
+            font-size: var(--text-sm);
+            background: rgba(0, 255, 157, 0.1);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 20px;
+            font-weight: 500;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        .job-details ul {
+            list-style: none;
+        }
+
+        .job-details li {
+            margin-bottom: var(--space-sm);
+            padding-left: var(--space-md);
+            position: relative;
+        }
+
+        .job-details li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--neon-blue);
+        }
+
+        /* Skills Section */
+        .skill-category h4 {
+            color: var(--neon-purple);
+            margin-bottom: var(--space-md);
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            margin-bottom: var(--space-sm);
+            padding-left: var(--space-md);
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+            font-size: 0.8em;
+        }
+
+        /* Footer - Transparent */
+        footer {
+            background: transparent;
+            padding: var(--space-xl) 0;
+            margin-top: var(--space-3xl);
+            border-top: 1px solid var(--bg-glass-border);
+            text-align: center;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-links {
-                position: fixed; top: 0; right: -100%; height: 100vh; width: 75%;
-                background: rgba(0, 0, 0, 0.95);
-                flex-direction: column; align-items: start;
-                padding: 6rem 2rem; transition: right 0.3s ease;
+            .hero h1 {
+                font-size: var(--text-3xl);
             }
-            .nav-links.active { right: 0; }
-            .experience-item { grid-template-columns: 1fr; }
+            
+            .contact-chips {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .job-header {
+                grid-template-columns: 1fr;
+            }
+            
+            .date {
+                justify-self: start;
+            }
+            
+            .nav-button {
+                bottom: var(--space-md);
+                right: var(--space-md);
+                width: 50px;
+                height: 50px;
+            }
+            
+            .arrow {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --text-base: 0.9rem;
+                --text-lg: 1rem;
+                --text-xl: 1.125rem;
+                --text-2xl: 1.25rem;
+                --text-3xl: 1.5rem;
+                --text-4xl: 1.75rem;
+            }
+            
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .glow-pulse {
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        /* Content padding for bottom nav */
+        main {
+            padding-bottom: 100px;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div class="logo">LP</div>
-            <button class="hamburger" id="hamburgerButton">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">home</a></li>
-                <li><a href="#experience">experience</a></li>
-                <li><a href="#skills">skills</a></li>
-                <li><a href="#contact">contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>👋 Hey, I’m Leonardo Pol</h1>
-                <div class="subtitle">Software Engineer</div>
-                <p class="description">
-                    I build scalable cloud systems, automate infrastructure, and craft reliable backend platforms.<br>
-                    Over 5 years shaping resilient digital products.<br>
-                    Always open to connect, collaborate, and exchange ideas 🤝
-                </p>
-                <div class="cta-buttons">
-                    <a href="#contact" class="btn btn-primary">Contact</a>
-                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="btn btn-secondary">LinkedIn</a>
-                </div>
-                <div class="status-indicator">
-                    <span class="status-dot"></span>
-                    Available for opportunities
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="experience-grid">
-                <div class="glass-card experience-item">
-                    <div>
-                        <div class="experience-date">Jun 2024 — Present</div>
-                        <div class="experience-company">Safety21</div>
-                    </div>
-                    <div class="experience-details">
-                        <h3>Software Engineer</h3>
-                        <ul>
-                            <li>Maintaining mission-critical public safety infrastructure</li>
-                            <li>Modernizing systems via containerization and IaC</li>
-                            <li>Leading cloud migration and cost optimization initiatives</li>
-                            <li>Integrating cloud-native and DevOps best practices</li>
-                        </ul>
-                    </div>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content fade-in">
+                <h1>LEONARDO POL</h1>
+                <p class="text-lead">Software Engineer & Technical Architect</p>
+                <p>Building future-proof systems with cyberpunk precision and innovative solutions</p>
+                
+                <!-- Contact & Social Chips -->
+                <div class="contact-chips">
+                    <a href="mailto:leonardo.pol@outlook.com" class="chip chip-blue">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="tel:+393427802285" class="chip chip-pink">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22 20.52 21.53 20.99 20.96 21.02C20.38 21.05 19.48 20.9 18.78 20.62C15.94 19.55 13.36 17.78 11.23 15.45C9.29 13.32 7.81 10.79 6.91 8.02C6.57 6.9 6.41 5.75 6.41 4.63C6.41 4.05 6.87 3.59 7.45 3.59H10.45C10.99 3.59 11.45 3.99 11.5 4.53C11.63 5.94 11.98 7.32 12.55 8.62C12.69 8.96 12.61 9.35 12.34 9.62L10.87 11.09C12.41 13.61 14.52 15.72 17.04 17.26L18.51 15.79C18.78 15.52 19.17 15.44 19.51 15.58C20.82 16.15 22.2 16.5 23.61 16.63C24.15 16.68 24.55 17.14 24.55 17.68L22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Phone
+                    </a>
+                    <a href="#" class="chip chip-purple">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="#" class="chip chip-green">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 19C4 20.5 4 16.5 2 16M16 22V18.37C16 17.45 15.81 16.55 15.43 15.73C15.05 14.91 14.49 14.19 13.8 13.62C17.14 13.24 20.5 12 20.5 7.5C20.4996 6.34 20.06 5.23 19.27 4.38C19.67 3.36 19.67 2.24 19.27 1.22C19.27 1.22 18.25 0.92 16.18 2.5C14.45 2.04 12.63 2.04 10.9 2.5C8.83 0.92 7.81 1.22 7.81 1.22C7.41 2.24 7.41 3.36 7.81 4.38C7.02 5.23 6.58 6.34 6.58 7.5C6.58 12 9.94 13.24 13.28 13.62C12.59 14.19 12.03 14.91 11.65 15.73C11.27 16.55 11.08 17.45 11.08 18.37V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        GitHub
+                    </a>
                 </div>
 
-                <div class="glass-card experience-item">
-                    <div>
-                        <div class="experience-date">Jun 2022 — Jun 2024</div>
-                        <div class="experience-company">Capgemini</div>
-                    </div>
-                    <div class="experience-details">
-                        <h3>Senior Consultant</h3>
-                        <ul>
-                            <li>Optimized CI/CD pipelines (Docker, EKS, SonarQube, GitLab) reducing deploy time by 40%</li>
-                            <li>Led a 22-member backend team building Python microservices</li>
-                            <li>Architected real-time satellite data collection systems</li>
-                            <li>Designed 10TB+ ETL pipeline with 99.9% uptime</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="glass-card experience-item">
-                    <div>
-                        <div class="experience-date">Apr 2021 — Jun 2022</div>
-                        <div class="experience-company">Avanade</div>
-                    </div>
-                    <div class="experience-details">
-                        <h3>Backend Developer</h3>
-                        <ul>
-                            <li>Built IoT infrastructure using Azure IoT Hub for 500+ devices</li>
-                            <li>Developed internal full-stack web tools for Azure resource management</li>
-                            <li>Implemented hybrid SQL + Graph DB architecture</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="glass-card experience-item">
-                    <div>
-                        <div class="experience-date">Jan 2020 — Apr 2021</div>
-                        <div class="experience-company">TEXA</div>
-                    </div>
-                    <div class="experience-details">
-                        <h3>Cloud & Software Developer</h3>
-                        <ul>
-                            <li>Reduced infrastructure costs by 30% via tiered storage and right-sizing</li>
-                            <li>Deployed centralized monitoring stack for faster incident resolution</li>
-                        </ul>
-                    </div>
+                <!-- Skill Chips -->
+                <div>
+                    <span class="chip chip-blue glow-pulse">Cloud Architecture</span>
+                    <span class="chip chip-pink">Microservices</span>
+                    <span class="chip chip-purple">DevOps</span>
+                    <span class="chip chip-green">System Design</span>
+                    <span class="chip chip-yellow">Python</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Stack</h2>
-            <div class="skills-grid">
-                <div class="glass-card skill-category">
-                    <h3>Cloud & Infrastructure ☁️</h3>
-                    <div>
-                        <span class="skill-tag">Google Cloud</span>
-                        <span class="skill-tag">Microsoft Azure</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">EKS</span>
+        <!-- About Section -->
+        <section id="about">
+            <h2>SYSTEM ARCHITECT</h2>
+            <p class="section-subtitle">Engineering resilient systems for the digital frontier</p>
+            <div class="card fade-in">
+                <p>I specialize in architecting cyber-resilient systems that thrive in complex environments. My approach combines cutting-edge technology with battle-tested methodologies to deliver solutions that not only meet today's demands but anticipate tomorrow's challenges.</p>
+                <p>With a focus on cloud-native architectures and distributed systems, I build platforms that scale exponentially while maintaining operational excellence. My work spans from mission-critical public safety systems to high-throughput data processing pipelines.</p>
+                <div style="margin-top: var(--space-lg);">
+                    <span class="chip chip-blue">Azure Cloud</span>
+                    <span class="chip chip-pink">Kubernetes</span>
+                    <span class="chip chip-purple">Python</span>
+                    <span class="chip chip-green">IoT Systems</span>
+                    <span class="chip chip-blue">Data Pipelines</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>MISSION LOG</h2>
+            <p class="section-subtitle">Strategic deployments across the tech landscape</p>
+            
+            <div class="grid">
+                <!-- Safety21 -->
+                <div class="card experience-card fade-in">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">SOFTWARE ENGINEER</h3>
+                            <p class="company">Safety21 | Padua, Italy</p>
+                        </div>
+                        <span class="date">2024 - PRESENT</span>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Architected mission-critical public safety systems with 99.99% uptime</li>
+                            <li>Orchestrated cloud migration reducing infrastructure costs by 45%</li>
+                            <li>Implemented zero-trust security protocols for government systems</li>
+                            <li>Led development of real-time data processing for emergency services</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: var(--space-md);">
+                        <span class="chip chip-blue">Azure</span>
+                        <span class="chip chip-pink">K8s</span>
+                        <span class="chip chip-purple">.NET</span>
+                        <span class="chip chip-green">DevOps</span>
                     </div>
                 </div>
 
-                <div class="glass-card skill-category">
-                    <h3>Backend & Architecture 🧠</h3>
-                    <div>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Microservices</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">ETL Pipelines</span>
-                        <span class="skill-tag">Big Data</span>
-                        <span class="skill-tag">IoT</span>
-                        <span class="skill-tag">.NET</span>
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">Javascript</span>
-                        <span class="skill-tag">Angular</span>
+                <!-- Capgemini -->
+                <div class="card experience-card fade-in">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">SENIOR CONSULTANT</h3>
+                            <p class="company">Capgemini | Venice, Italy</p>
+                        </div>
+                        <span class="date">2022 - 2024</span>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Commanded 22-developer squad delivering telecom infrastructure</li>
+                            <li>Engineered CI/CD systems reducing deployment cycles by 85%</li>
+                            <li>Architected microservices handling 50M+ daily transactions</li>
+                            <li>Implemented AI-driven monitoring reducing incident response time</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: var(--space-md);">
+                        <span class="chip chip-blue">Python</span>
+                        <span class="chip chip-pink">Docker</span>
+                        <span class="chip chip-purple">AWS</span>
+                        <span class="chip chip-green">CI/CD</span>
                     </div>
                 </div>
 
-                <div class="glass-card skill-category">
-                    <h3>Databases 🌐</h3>
-                    <div>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">CosmosDB</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Neo4J</span>
+                <!-- Avanade -->
+                <div class="card experience-card fade-in">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">BACKEND DEVELOPER</h3>
+                            <p class="company">Avanade | Padua, Italy</p>
+                        </div>
+                        <span class="date">2021 - 2022</span>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Built satellite data processing systems handling 15TB+ daily</li>
+                            <li>Designed IoT networks for environmental monitoring</li>
+                            <li>Implemented real-time analytics for space data streams</li>
+                            <li>Created data validation systems with 99.9% accuracy</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: var(--space-md);">
+                        <span class="chip chip-blue">Azure IoT</span>
+                        <span class="chip chip-pink">Python</span>
+                        <span class="chip chip-purple">ETL</span>
+                        <span class="chip chip-green">Data Science</span>
                     </div>
                 </div>
 
-                <div class="glass-card skill-category">
-                    <h3>DevOps & Tooling 🧩</h3>
-                    <div>
-                        <span class="skill-tag">GitLab</span>
-                        <span class="skill-tag">Azure DevOps</span>
-                        <span class="skill-tag">SonarQube</span>
-                        <span class="skill-tag">Infrastructure as Code</span>
+                <!-- Texa -->
+                <div class="card experience-card fade-in">
+                    <div class="job-header">
+                        <div>
+                            <h3 class="job-title">CLOUD & SOFTWARE DEVELOPER</h3>
+                            <p class="company">Texa | Monastier, Italy</p>
+                        </div>
+                        <span class="date">2020 - 2021</span>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Developed full-stack web extensions for Azure resource management</li>
+                            <li>Optimized cloud infrastructure achieving 35% cost reduction</li>
+                            <li>Built monitoring solutions identifying significant savings opportunities</li>
+                            <li>Created internal tools improving team productivity by 40%</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: var(--space-md);">
+                        <span class="chip chip-blue">Azure</span>
+                        <span class="chip chip-pink">Full-Stack</span>
+                        <span class="chip chip-purple">SQL</span>
+                        <span class="chip chip-green">Graph DB</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="section-title">Contact</h2>
-                <p class="description">
-                    Let’s connect 🚀<br>
-                    I’m open to backend engineering, cloud architecture, and infrastructure roles at scale-focused teams.
-                </p>
-                <div class="contact-links">
-                    <a href="mailto:leonardo.pol@outlook.com" class="contact-link">📧 leonardo.pol@outlook.com</a>
-                    <a href="https://www.linkedin.com/in/leonardo-pol-3773aa207" target="_blank" class="contact-link">💼 linkedin.com/in/leonardo-pol-3773aa207</a>
-                    <a href="https://github.com/leopoldev404" target="_blank" class="contact-link">💻 github.com/leopoldev404</a>
-                    <a href="tel:+393427802285" class="contact-link">📱 +39 342 780 2285</a>
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>CORE SYSTEMS</h2>
+            <p class="section-subtitle">Technical arsenal for digital transformation</p>
+            <div class="grid grid-2">
+                <div class="card skill-category fade-in">
+                    <h4>CLOUD INFRASTRUCTURE</h4>
+                    <ul>
+                        <li>Azure Cloud Architecture</li>
+                        <li>Kubernetes Orchestration</li>
+                        <li>Serverless Computing</li>
+                        <li>Infrastructure as Code</li>
+                        <li>Multi-cloud Deployment</li>
+                    </ul>
+                </div>
+                <div class="card skill-category fade-in">
+                    <h4>SYSTEM DESIGN</h4>
+                    <ul>
+                        <li>Microservices Architecture</li>
+                        <li>Event-Driven Systems</li>
+                        <li>API Design & Development</li>
+                        <li>Database Optimization</li>
+                        <li>System Monitoring</li>
+                    </ul>
+                </div>
+                <div class="card skill-category fade-in">
+                    <h4>DEVELOPMENT</h4>
+                    <ul>
+                        <li>Python & Backend Development</li>
+                        <li>Containerization</li>
+                        <li>CI/CD Pipeline Design</li>
+                        <li>Performance Optimization</li>
+                        <li>Security Implementation</li>
+                    </ul>
+                </div>
+                <div class="card skill-category fade-in">
+                    <h4>DATA ENGINEERING</h4>
+                    <ul>
+                        <li>Big Data Processing</li>
+                        <li>IoT System Design</li>
+                        <li>Real-time Analytics</li>
+                        <li>Data Pipeline Architecture</li>
+                        <li>Machine Learning Ops</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
+    <!-- Footer - Transparent -->
     <footer>
         <div class="container">
-            <p>© 2025 Leonardo Pol</p>
+            <p class="text-muted">&copy; 2025 LEONARDO POL</p>
         </div>
     </footer>
 
+    <!-- Animated Navigation Button -->
+    <div class="nav-button" id="navButton">
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
     <script>
-        const hamburgerButton = document.getElementById('hamburgerButton');
-        const navLinksElement = document.getElementById('navLinks');
-        hamburgerButton.addEventListener('click', () => {
-            hamburgerButton.classList.toggle('active');
-            navLinksElement.classList.toggle('active');
+        // Navigation button functionality
+        const navButton = document.getElementById('navButton');
+        const sections = document.querySelectorAll('section');
+        let currentSectionIndex = 0;
+
+        // Function to navigate to next section
+        function navigateToNextSection() {
+            currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+            
+            // Update button direction based on position
+            if (currentSectionIndex === sections.length - 1) {
+                navButton.classList.add('up');
+            } else {
+                navButton.classList.remove('up');
+            }
+        }
+
+        // Function to navigate to previous section
+        function navigateToPrevSection() {
+            currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+            
+            // Update button direction based on position
+            if (currentSectionIndex === 0) {
+                navButton.classList.remove('up');
+            } else {
+                navButton.classList.add('up');
+            }
+        }
+
+        // Click event for navigation button
+        navButton.addEventListener('click', function() {
+            if (currentSectionIndex === sections.length - 1) {
+                // If at last section, go back to top
+                currentSectionIndex = -1;
+                navigateToNextSection();
+            } else {
+                navigateToNextSection();
+            }
         });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburgerButton.classList.remove('active');
-                navLinksElement.classList.remove('active');
+
+        // Update current section based on scroll position
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSectionIndex = index;
+                    
+                    // Update button direction
+                    if (currentSectionIndex === sections.length - 1) {
+                        navButton.classList.add('up');
+                    } else {
+                        navButton.classList.remove('up');
+                    }
+                }
             });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(element => {
+            observer.observe(element);
         });
     </script>
 </body>
