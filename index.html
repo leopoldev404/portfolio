@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pollbytes - GitHub Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Leonardo Pol | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS Custom Properties - GitHub-inspired Theme */
+        /* CSS Custom Properties - Cyberpunk Theme */
         :root {
-            /* GitHub Colors */
-            --github-blue: #0969da;
-            --github-blue-dark: #0860ca;
-            --github-green: #1a7f37;
-            --github-red: #d1242f;
-            --github-purple: #6f42c1;
+            /* Cyberpunk Color Palette */
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-purple: #9d00ff;
+            --neon-green: #00ff9d;
+            --neon-yellow: #ffeb00;
             
             /* Dark Theme Base */
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-overlay: rgba(13, 17, 23, 0.9);
-            --border-color: #30363d;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-glass: rgba(26, 26, 37, 0.8);
+            --bg-glass-border: rgba(0, 243, 255, 0.2);
             
             /* Text Colors */
-            --text-primary: #c9d1d9;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
-            
-            /* Syntax Highlight */
-            --code-bg: #161b22;
-            --code-text: #79c0ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b8b8cc;
+            --text-muted: #8a8aa0;
             
             /* Typography Scale */
             --text-xs: 0.75rem;
@@ -51,9 +47,11 @@
             --space-3xl: 4rem;
             
             /* Effects */
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
-            --transition: all 0.2s ease;
+            --glow-blue: 0 0 10px rgba(0, 243, 255, 0.5);
+            --glow-pink: 0 0 10px rgba(255, 0, 255, 0.5);
+            --glow-purple: 0 0 10px rgba(157, 0, 255, 0.5);
+            --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 20px rgba(0, 243, 255, 0.3);
         }
 
         /* CSS Reset */
@@ -69,7 +67,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background: var(--bg-primary);
@@ -77,37 +75,49 @@
             overflow-x: hidden;
         }
 
-        /* Typography */
+        /* Cyberpunk Typography */
         h1, h2, h3, h4, h5 {
+            font-family: 'Orbitron', monospace;
             font-weight: 700;
-            line-height: 1.25;
+            line-height: 1.2;
+            letter-spacing: 0.05em;
         }
 
-        h1 {
+        h1 { 
             font-size: var(--text-4xl);
-            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--glow-blue);
         }
 
-        h2 {
+        h2 { 
+            font-size: var(--text-3xl);
+            color: var(--neon-blue);
+            text-shadow: var(--glow-blue);
+        }
+
+        h3 { 
             font-size: var(--text-2xl);
-            color: var(--text-primary);
-            margin-bottom: var(--space-lg);
+            color: var(--neon-pink);
+            text-shadow: var(--glow-pink);
         }
 
-        h3 {
-            font-size: var(--text-lg);
-            color: var(--text-primary);
-        }
-
-        h4 {
-            font-size: var(--text-base);
-            color: var(--github-blue);
+        h4 { 
+            font-size: var(--text-xl);
+            color: var(--neon-green);
         }
 
         p, li {
             font-size: var(--text-base);
             line-height: 1.6;
             color: var(--text-secondary);
+        }
+
+        .text-lead {
+            font-size: var(--text-lg);
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         .text-muted {
@@ -117,7 +127,7 @@
 
         /* Layout */
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--space-lg);
         }
@@ -135,262 +145,244 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         }
 
-        /* GitHub Cards */
+        /* Cyberpunk Cards */
         .card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: var(--space-lg);
-            transition: var(--shadow-sm);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--bg-glass-border);
+            padding: var(--space-xl);
+            box-shadow: var(--shadow-dark);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
         }
 
         .card:hover {
-            border-color: var(--text-secondary);
-            background: var(--bg-tertiary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--neon-blue);
         }
 
-        /* GitHub Badges/Chips */
-        .badge {
+        /* Cyberpunk Chips */
+        .chip {
             display: inline-flex;
             align-items: center;
             gap: var(--space-xs);
-            padding: 0.25rem 0.75rem;
-            border-radius: 24px;
-            font-size: var(--text-xs);
-            font-weight: 600;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: 20px;
+            font-size: var(--text-sm);
+            font-weight: 500;
             margin-right: var(--space-sm);
             margin-bottom: var(--space-sm);
-            transition: var(--transition);
+            transition: all 0.3s ease;
             text-decoration: none;
             cursor: pointer;
-            border: 1px solid var(--border-color);
         }
 
-        .badge-primary {
-            background: rgba(9, 105, 218, 0.1);
-            color: var(--github-blue);
-            border-color: rgba(9, 105, 218, 0.3);
+        .chip-blue {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-blue);
+            border: 1px solid rgba(0, 243, 255, 0.3);
         }
 
-        .badge-success {
-            background: rgba(26, 127, 55, 0.1);
-            color: var(--github-green);
-            border-color: rgba(26, 127, 55, 0.3);
+        .chip-pink {
+            background: rgba(255, 0, 255, 0.1);
+            color: var(--neon-pink);
+            border: 1px solid rgba(255, 0, 255, 0.3);
         }
 
-        .badge-secondary {
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
-            border-color: var(--border-color);
+        .chip-purple {
+            background: rgba(157, 0, 255, 0.1);
+            color: var(--neon-purple);
+            border: 1px solid rgba(157, 0, 255, 0.3);
         }
 
-        .badge:hover {
-            background: var(--bg-tertiary);
-            border-color: var(--text-secondary);
+        .chip-green {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--neon-green);
+            border: 1px solid rgba(0, 255, 157, 0.3);
         }
 
-        /* Profile Header Section */
-        .profile-header {
-            padding: var(--space-2xl) 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: var(--space-2xl);
+        .chip-yellow {
+            background: rgba(255, 235, 0, 0.1);
+            color: var(--neon-yellow);
+            border: 1px solid rgba(255, 235, 0, 0.3);
         }
 
-        .profile-top {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: var(--space-xl);
-            align-items: start;
-            margin-bottom: var(--space-xl);
+        .chip:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px currentColor;
         }
 
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
+        .chip-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Animated Navigation Button */
+        .nav-button {
+            position: fixed;
+            bottom: var(--space-lg);
+            right: var(--space-lg);
+            width: 60px;
+            height: 60px;
+            background: rgba(26, 26, 37, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 243, 255, 0.3);
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--github-blue), var(--github-purple));
-            border: 3px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        .profile-info h1 {
-            margin-bottom: var(--space-xs);
-        }
-
-        .username {
-            color: var(--text-secondary);
-            font-size: var(--text-lg);
-            margin-bottom: var(--space-md);
-        }
-
-        .bio {
-            font-size: var(--text-base);
-            color: var(--text-secondary);
-            margin-bottom: var(--space-md);
-            max-width: 600px;
-        }
-
-        .profile-stats {
-            display: flex;
-            gap: var(--space-xl);
-            margin-bottom: var(--space-lg);
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-xs);
-        }
-
-        .stat-number {
-            font-size: var(--text-lg);
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .stat-label {
-            font-size: var(--text-sm);
-            color: var(--text-secondary);
-        }
-
-        .profile-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-md);
-            margin-bottom: var(--space-lg);
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-xs);
-            color: var(--text-secondary);
-            font-size: var(--text-sm);
-        }
-
-        .contact-links {
-            display: flex;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-xs);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: var(--text-sm);
-            font-weight: 600;
-            border: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            text-decoration: none;
             cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-primary {
-            background: var(--github-blue);
-            border-color: var(--github-blue);
-            color: white;
-        }
-
-        .btn:hover {
-            border-color: var(--text-secondary);
-            background: var(--bg-primary);
-        }
-
-        .btn-primary:hover {
-            background: var(--github-blue-dark);
-            border-color: var(--github-blue-dark);
-        }
-
-        /* Section Styles */
-        section {
-            margin-bottom: var(--space-3xl);
-        }
-
-        .section-title {
+            transition: all 0.3s ease;
+            z-index: 1000;
             display: flex;
             align-items: center;
-            gap: var(--space-md);
-            margin-bottom: var(--space-lg);
-            padding-bottom: var(--space-md);
-            border-bottom: 1px solid var(--border-color);
+            justify-content: center;
+            box-shadow: var(--shadow-dark), var(--glow-blue);
         }
 
-        .section-title h2 {
-            margin: 0;
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--neon-blue);
+            background: rgba(26, 26, 37, 0.9);
         }
 
-        /* Experience/Timeline */
-        .timeline {
+        .nav-button.up .arrow {
+            transform: rotate(-180deg);
+        }
+
+        .arrow {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .arrow path {
+            stroke: var(--neon-blue);
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-button:hover .arrow path {
+            stroke: var(--neon-pink);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: var(--space-3xl) 0 var(--space-2xl);
+            text-align: center;
             position: relative;
-            padding-left: var(--space-lg);
         }
 
-        .timeline::before {
+        .hero::before {
             content: '';
             position: absolute;
+            top: 0;
             left: 0;
-            top: 0;
+            right: 0;
             bottom: 0;
-            width: 1px;
-            background: var(--border-color);
+            background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .timeline-item {
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
             position: relative;
-            margin-bottom: var(--space-xl);
-            padding-bottom: var(--space-xl);
+            z-index: 1;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -1.5rem;
-            top: 0;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--github-blue);
-            border: 3px solid var(--bg-primary);
+        .hero .text-lead {
+            margin-bottom: var(--space-xl);
+        }
+
+        .contact-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            margin-top: var(--space-xl);
+            margin-bottom: var(--space-lg);
+        }
+
+        /* Experience Section */
+        section {
+            margin: var(--space-2xl) 0;
+            padding-bottom: var(--space-2xl);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto var(--space-xl);
+            color: var(--text-secondary);
+        }
+
+        .experience-card {
+            margin-bottom: var(--space-xl);
+        }
+
+        .experience-card:last-child {
+            margin-bottom: 0;
         }
 
         .job-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: var(--space-sm);
             margin-bottom: var(--space-md);
+            align-items: start;
         }
 
         .job-title {
-            font-size: var(--text-lg);
-            font-weight: 700;
-            color: var(--text-primary);
+            color: var(--neon-pink);
+            margin-bottom: var(--space-xs);
         }
 
         .company {
             color: var(--text-secondary);
-            font-size: var(--text-base);
+            font-weight: 500;
         }
 
         .date {
-            color: var(--text-muted);
+            color: var(--neon-green);
             font-size: var(--text-sm);
-            margin-top: var(--space-xs);
+            background: rgba(0, 255, 157, 0.1);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: 20px;
+            font-weight: 500;
+            text-align: center;
+            border: 1px solid rgba(0, 255, 157, 0.3);
         }
 
         .job-details ul {
             list-style: none;
-            margin: var(--space-md) 0;
         }
 
         .job-details li {
-            color: var(--text-secondary);
             margin-bottom: var(--space-sm);
             padding-left: var(--space-md);
             position: relative;
@@ -400,72 +392,94 @@
             content: "▸";
             position: absolute;
             left: 0;
-            color: var(--github-blue);
+            color: var(--neon-blue);
         }
 
         /* Skills Section */
-        .skill-group {
-            margin-bottom: var(--space-lg);
-        }
-
-        .skill-group h4 {
+        .skill-category h4 {
+            color: var(--neon-purple);
             margin-bottom: var(--space-md);
         }
 
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
+        .skill-category ul {
+            list-style: none;
         }
 
-        /* Repository/Project Cards */
-        .repo-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: var(--space-lg);
-            transition: var(--transition);
-        }
-
-        .repo-card:hover {
-            border-color: var(--github-blue);
-            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
-        }
-
-        .repo-name {
-            color: var(--github-blue);
-            font-weight: 600;
-            font-size: var(--text-base);
+        .skill-category li {
             margin-bottom: var(--space-sm);
+            padding-left: var(--space-md);
+            position: relative;
         }
 
-        .repo-desc {
-            color: var(--text-secondary);
-            font-size: var(--text-sm);
-            margin-bottom: var(--space-md);
+        .skill-category li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+            font-size: 0.8em;
         }
 
-        .repo-meta {
-            display: flex;
-            gap: var(--space-md);
-            font-size: var(--text-xs);
-            color: var(--text-muted);
-        }
-
-        /* Footer */
+        /* Footer - Transparent */
         footer {
             background: transparent;
             padding: var(--space-xl) 0;
             margin-top: var(--space-3xl);
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--bg-glass-border);
             text-align: center;
         }
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: var(--text-3xl);
+            }
+            
+            .contact-chips {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .job-header {
+                grid-template-columns: 1fr;
+            }
+            
+            .date {
+                justify-self: start;
+            }
+            
+            .nav-button {
+                bottom: var(--space-md);
+                right: var(--space-md);
+                width: 50px;
+                height: 50px;
+            }
+            
+            .arrow {
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --text-base: 0.9rem;
+                --text-lg: 1rem;
+                --text-xl: 1.125rem;
+                --text-2xl: 1.25rem;
+                --text-3xl: 1.5rem;
+                --text-4xl: 1.75rem;
+            }
+            
+            .container {
+                padding: 0 var(--space-md);
+            }
+        }
+
         /* Animations */
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -473,165 +487,120 @@
             }
         }
 
+        @keyframes glowPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+
         .fade-in {
-            animation: fadeIn 0.6s ease forwards;
+            animation: fadeInUp 0.6s ease forwards;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .profile-top {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-
-            .profile-avatar {
-                width: 100px;
-                height: 100px;
-                font-size: 2rem;
-            }
-
-            .profile-stats {
-                flex-direction: column;
-                gap: var(--space-md);
-            }
-
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-
-            h1 {
-                font-size: var(--text-3xl);
-            }
+        .glow-pulse {
+            animation: glowPulse 2s ease-in-out infinite;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 var(--space-md);
-            }
-
-            h1 {
-                font-size: var(--text-2xl);
-            }
-
-            .profile-meta {
-                flex-direction: column;
-                gap: var(--space-sm);
-            }
+        /* Content padding for bottom nav */
+        main {
+            padding-bottom: 100px;
         }
     </style>
 </head>
 <body>
+    <!-- Main Content -->
     <main class="container">
-        <!-- Profile Header -->
-        <div class="profile-header fade-in">
-            <div class="profile-top">
-                <div class="profile-avatar">LP</div>
-                <div class="profile-info">
-                    <h1>Leonardo Pol</h1>
-                    <p class="username">@leonardopol</p>
-                    <p class="bio">🔧 Software Engineer & Technical Architect | Building resilient systems with precision | Cloud • Microservices • DevOps</p>
-                    
-                    <div class="profile-stats">
-                        <div class="stat">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Projects</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">1.2k</span>
-                            <span class="stat-label">Followers</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">450+</span>
-                            <span class="stat-label">Contributions</span>
-                        </div>
-                    </div>
-
-                    <div class="profile-meta">
-                        <div class="meta-item">
-                            <span>📍</span>
-                            <span>Padua, Italy</span>
-                        </div>
-                        <div class="meta-item">
-                            <span>🔗</span>
-                            <a href="mailto:leonardo.pol@outlook.com" style="color: var(--github-blue); text-decoration: none;">leonardo.pol@outlook.com</a>
-                        </div>
-                        <div class="meta-item">
-                            <span>🏢</span>
-                            <span>Safety21</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-links">
-                        <a href="mailto:leonardo.pol@outlook.com" class="btn btn-primary">Follow</a>
-                        <a href="#" class="btn">Share Profile</a>
-                    </div>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content fade-in">
+                <h1>LEONARDO POL</h1>
+                <p class="text-lead">Software Engineer & Technical Architect</p>
+                <p>Building future-proof systems with cyberpunk precision and innovative solutions</p>
+                
+                <!-- Contact & Social Chips -->
+                <div class="contact-chips">
+                    <a href="mailto:leonardo.pol@outlook.com" class="chip chip-blue">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Email
+                    </a>
+                    <a href="tel:+393427802285" class="chip chip-pink">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 16.92V19.92C22 20.52 21.53 20.99 20.96 21.02C20.38 21.05 19.48 20.9 18.78 20.62C15.94 19.55 13.36 17.78 11.23 15.45C9.29 13.32 7.81 10.79 6.91 8.02C6.57 6.9 6.41 5.75 6.41 4.63C6.41 4.05 6.87 3.59 7.45 3.59H10.45C10.99 3.59 11.45 3.99 11.5 4.53C11.63 5.94 11.98 7.32 12.55 8.62C12.69 8.96 12.61 9.35 12.34 9.62L10.87 11.09C12.41 13.61 14.52 15.72 17.04 17.26L18.51 15.79C18.78 15.52 19.17 15.44 19.51 15.58C20.82 16.15 22.2 16.5 23.61 16.63C24.15 16.68 24.55 17.14 24.55 17.68L22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Phone
+                    </a>
+                    <a href="#" class="chip chip-purple">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="#" class="chip chip-green">
+                        <svg class="chip-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 19C4 20.5 4 16.5 2 16M16 22V18.37C16 17.45 15.81 16.55 15.43 15.73C15.05 14.91 14.49 14.19 13.8 13.62C17.14 13.24 20.5 12 20.5 7.5C20.4996 6.34 20.06 5.23 19.27 4.38C19.67 3.36 19.67 2.24 19.27 1.22C19.27 1.22 18.25 0.92 16.18 2.5C14.45 2.04 12.63 2.04 10.9 2.5C8.83 0.92 7.81 1.22 7.81 1.22C7.41 2.24 7.41 3.36 7.81 4.38C7.02 5.23 6.58 6.34 6.58 7.5C6.58 12 9.94 13.24 13.28 13.62C12.59 14.19 12.03 14.91 11.65 15.73C11.27 16.55 11.08 17.45 11.08 18.37V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        GitHub
+                    </a>
                 </div>
-            </div>
-        </div>
 
-        <!-- About Section -->
-        <section id="about" class="fade-in">
-            <div class="section-title">
-                <h2>About</h2>
-            </div>
-            <div class="card">
-                <p>I specialize in architecting cyber-resilient systems that thrive in complex environments. My approach combines cutting-edge technology with battle-tested methodologies to deliver solutions that not only meet today's demands but anticipate tomorrow's challenges.</p>
-                <p style="margin-top: var(--space-md);">With a focus on cloud-native architectures and distributed systems, I build platforms that scale exponentially while maintaining operational excellence. My work spans from mission-critical public safety systems to high-throughput data processing pipelines.</p>
+                <!-- Skill Chips -->
+                <div>
+                    <span class="chip chip-blue glow-pulse">Cloud Architecture</span>
+                    <span class="chip chip-pink">Microservices</span>
+                    <span class="chip chip-purple">DevOps</span>
+                    <span class="chip chip-green">System Design</span>
+                    <span class="chip chip-yellow">Python</span>
+                </div>
             </div>
         </section>
 
-        <!-- Featured Tech Stack -->
-        <section id="stack" class="fade-in">
-            <div class="section-title">
-                <h2>Tech Stack</h2>
-            </div>
-            <div class="card">
-                <div class="skill-group">
-                    <h4>💻 Cloud & Infrastructure</h4>
-                    <div class="skills-list">
-                        <span class="badge badge-primary">Azure Cloud</span>
-                        <span class="badge badge-primary">Kubernetes</span>
-                        <span class="badge badge-primary">Docker</span>
-                        <span class="badge badge-primary">AWS</span>
-                        <span class="badge badge-primary">Infrastructure as Code</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4>🔧 Backend & Development</h4>
-                    <div class="skills-list">
-                        <span class="badge badge-secondary">Python</span>
-                        <span class="badge badge-secondary">.NET</span>
-                        <span class="badge badge-secondary">Go</span>
-                        <span class="badge badge-secondary">SQL</span>
-                        <span class="badge badge-secondary">GraphQL</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4>🚀 DevOps & Tools</h4>
-                    <div class="skills-list">
-                        <span class="badge badge-success">CI/CD</span>
-                        <span class="badge badge-success">Terraform</span>
-                        <span class="badge badge-success">Jenkins</span>
-                        <span class="badge badge-success">Git</span>
-                        <span class="badge badge-success">Monitoring</span>
-                    </div>
+        <!-- About Section -->
+        <section id="about">
+            <h2>SYSTEM ARCHITECT</h2>
+            <p class="section-subtitle">Engineering resilient systems for the digital frontier</p>
+            <div class="card fade-in">
+                <p>I specialize in architecting cyber-resilient systems that thrive in complex environments. My approach combines cutting-edge technology with battle-tested methodologies to deliver solutions that not only meet today's demands but anticipate tomorrow's challenges.</p>
+                <p>With a focus on cloud-native architectures and distributed systems, I build platforms that scale exponentially while maintaining operational excellence. My work spans from mission-critical public safety systems to high-throughput data processing pipelines.</p>
+                <div style="margin-top: var(--space-lg);">
+                    <span class="chip chip-blue">Azure Cloud</span>
+                    <span class="chip chip-pink">Kubernetes</span>
+                    <span class="chip chip-purple">Python</span>
+                    <span class="chip chip-green">IoT Systems</span>
+                    <span class="chip chip-blue">Data Pipelines</span>
                 </div>
             </div>
         </section>
 
         <!-- Experience Section -->
-        <section id="experience" class="fade-in">
-            <div class="section-title">
-                <h2>Experience</h2>
-            </div>
-
-            <div class="timeline">
+        <section id="experience">
+            <h2>MISSION LOG</h2>
+            <p class="section-subtitle">Strategic deployments across the tech landscape</p>
+            
+            <div class="grid">
                 <!-- Safety21 -->
-                <div class="timeline-item">
+                <div class="card experience-card fade-in">
                     <div class="job-header">
-                        <p class="job-title">Software Engineer</p>
-                        <p class="company">Safety21 • Padua, Italy</p>
-                        <p class="date">2024 - Present</p>
+                        <div>
+                            <h3 class="job-title">SOFTWARE ENGINEER</h3>
+                            <p class="company">Safety21 | Padua, Italy</p>
+                        </div>
+                        <span class="date">2024 - PRESENT</span>
                     </div>
                     <div class="job-details">
                         <ul>
@@ -642,19 +611,21 @@
                         </ul>
                     </div>
                     <div style="margin-top: var(--space-md);">
-                        <span class="badge badge-primary">Azure</span>
-                        <span class="badge badge-primary">Kubernetes</span>
-                        <span class="badge badge-primary">.NET</span>
-                        <span class="badge badge-success">DevOps</span>
+                        <span class="chip chip-blue">Azure</span>
+                        <span class="chip chip-pink">K8s</span>
+                        <span class="chip chip-purple">.NET</span>
+                        <span class="chip chip-green">DevOps</span>
                     </div>
                 </div>
 
                 <!-- Capgemini -->
-                <div class="timeline-item">
+                <div class="card experience-card fade-in">
                     <div class="job-header">
-                        <p class="job-title">Senior Consultant</p>
-                        <p class="company">Capgemini • Venice, Italy</p>
-                        <p class="date">2022 - 2024</p>
+                        <div>
+                            <h3 class="job-title">SENIOR CONSULTANT</h3>
+                            <p class="company">Capgemini | Venice, Italy</p>
+                        </div>
+                        <span class="date">2022 - 2024</span>
                     </div>
                     <div class="job-details">
                         <ul>
@@ -665,19 +636,21 @@
                         </ul>
                     </div>
                     <div style="margin-top: var(--space-md);">
-                        <span class="badge badge-secondary">Python</span>
-                        <span class="badge badge-secondary">Docker</span>
-                        <span class="badge badge-primary">AWS</span>
-                        <span class="badge badge-success">CI/CD</span>
+                        <span class="chip chip-blue">Python</span>
+                        <span class="chip chip-pink">Docker</span>
+                        <span class="chip chip-purple">AWS</span>
+                        <span class="chip chip-green">CI/CD</span>
                     </div>
                 </div>
 
                 <!-- Avanade -->
-                <div class="timeline-item">
+                <div class="card experience-card fade-in">
                     <div class="job-header">
-                        <p class="job-title">Backend Developer</p>
-                        <p class="company">Avanade • Padua, Italy</p>
-                        <p class="date">2021 - 2022</p>
+                        <div>
+                            <h3 class="job-title">BACKEND DEVELOPER</h3>
+                            <p class="company">Avanade | Padua, Italy</p>
+                        </div>
+                        <span class="date">2021 - 2022</span>
                     </div>
                     <div class="job-details">
                         <ul>
@@ -688,19 +661,21 @@
                         </ul>
                     </div>
                     <div style="margin-top: var(--space-md);">
-                        <span class="badge badge-primary">Azure IoT</span>
-                        <span class="badge badge-secondary">Python</span>
-                        <span class="badge badge-secondary">ETL</span>
-                        <span class="badge badge-secondary">Data Science</span>
+                        <span class="chip chip-blue">Azure IoT</span>
+                        <span class="chip chip-pink">Python</span>
+                        <span class="chip chip-purple">ETL</span>
+                        <span class="chip chip-green">Data Science</span>
                     </div>
                 </div>
 
                 <!-- Texa -->
-                <div class="timeline-item">
+                <div class="card experience-card fade-in">
                     <div class="job-header">
-                        <p class="job-title">Cloud & Software Developer</p>
-                        <p class="company">Texa • Monastier, Italy</p>
-                        <p class="date">2020 - 2021</p>
+                        <div>
+                            <h3 class="job-title">CLOUD & SOFTWARE DEVELOPER</h3>
+                            <p class="company">Texa | Monastier, Italy</p>
+                        </div>
+                        <span class="date">2020 - 2021</span>
                     </div>
                     <div class="job-details">
                         <ul>
@@ -711,119 +686,143 @@
                         </ul>
                     </div>
                     <div style="margin-top: var(--space-md);">
-                        <span class="badge badge-primary">Azure</span>
-                        <span class="badge badge-secondary">Full-Stack</span>
-                        <span class="badge badge-secondary">SQL</span>
-                        <span class="badge badge-secondary">Graph DB</span>
+                        <span class="chip chip-blue">Azure</span>
+                        <span class="chip chip-pink">Full-Stack</span>
+                        <span class="chip chip-purple">SQL</span>
+                        <span class="chip chip-green">Graph DB</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Projects -->
-        <section id="projects" class="fade-in">
-            <div class="section-title">
-                <h2>Featured Projects</h2>
-            </div>
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>CORE SYSTEMS</h2>
+            <p class="section-subtitle">Technical arsenal for digital transformation</p>
             <div class="grid grid-2">
-                <div class="repo-card">
-                    <p class="repo-name">🏢 Safety Systems Platform</p>
-                    <p class="repo-desc">Mission-critical public safety infrastructure with 99.99% uptime SLA. Handles real-time emergency data processing and government compliance.</p>
-                    <div class="repo-meta">
-                        <span>⭐ 142</span>
-                        <span>🔗 .NET</span>
-                        <span>📅 2024</span>
-                    </div>
-                </div>
-                <div class="repo-card">
-                    <p class="repo-name">📊 Real-time Analytics Engine</p>
-                    <p class="repo-desc">High-throughput data pipeline processing 50M+ transactions daily. Built with Kubernetes and distributed systems architecture.</p>
-                    <div class="repo-meta">
-                        <span>⭐ 89</span>
-                        <span>🔗 Python</span>
-                        <span>📅 2023</span>
-                    </div>
-                </div>
-                <div class="repo-card">
-                    <p class="repo-name">🛰️ Satellite Data Processing</p>
-                    <p class="repo-desc">IoT system processing 15TB+ of satellite data daily. Real-time analytics for environmental monitoring with 99.9% accuracy.</p>
-                    <div class="repo-meta">
-                        <span>⭐ 67</span>
-                        <span>🔗 Python</span>
-                        <span>📅 2022</span>
-                    </div>
-                </div>
-                <div class="repo-card">
-                    <p class="repo-name">⚙️ CI/CD Pipeline Framework</p>
-                    <p class="repo-desc">Automated deployment system reducing cycle times by 85%. Full GitOps implementation with infrastructure as code.</p>
-                    <div class="repo-meta">
-                        <span>⭐ 156</span>
-                        <span>🔗 Go</span>
-                        <span>📅 2023</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Grid -->
-        <section id="skills" class="fade-in">
-            <div class="section-title">
-                <h2>Core Competencies</h2>
-            </div>
-            <div class="grid grid-2">
-                <div class="card skill-category">
-                    <h4>☁️ Cloud Architecture</h4>
-                    <ul class="skills-list" style="flex-direction: column; gap: var(--space-sm);">
-                        <li style="margin: 0; padding: 0;">Azure Cloud Architecture & Services</li>
-                        <li style="margin: 0; padding: 0;">Kubernetes Orchestration & Management</li>
-                        <li style="margin: 0; padding: 0;">Serverless Computing & Functions</li>
-                        <li style="margin: 0; padding: 0;">Infrastructure as Code (Terraform)</li>
-                        <li style="margin: 0; padding: 0;">Multi-cloud Deployment Strategies</li>
+                <div class="card skill-category fade-in">
+                    <h4>CLOUD INFRASTRUCTURE</h4>
+                    <ul>
+                        <li>Azure Cloud Architecture</li>
+                        <li>Kubernetes Orchestration</li>
+                        <li>Serverless Computing</li>
+                        <li>Infrastructure as Code</li>
+                        <li>Multi-cloud Deployment</li>
                     </ul>
                 </div>
-                <div class="card skill-category">
-                    <h4>🔧 System Design</h4>
-                    <ul class="skills-list" style="flex-direction: column; gap: var(--space-sm);">
-                        <li style="margin: 0; padding: 0;">Microservices Architecture</li>
-                        <li style="margin: 0; padding: 0;">Event-Driven Systems Design</li>
-                        <li style="margin: 0; padding: 0;">API Design & GraphQL</li>
-                        <li style="margin: 0; padding: 0;">Database Optimization</li>
-                        <li style="margin: 0; padding: 0;">Distributed Systems Patterns</li>
+                <div class="card skill-category fade-in">
+                    <h4>SYSTEM DESIGN</h4>
+                    <ul>
+                        <li>Microservices Architecture</li>
+                        <li>Event-Driven Systems</li>
+                        <li>API Design & Development</li>
+                        <li>Database Optimization</li>
+                        <li>System Monitoring</li>
                     </ul>
                 </div>
-                <div class="card skill-category">
-                    <h4>🚀 DevOps & Tools</h4>
-                    <ul class="skills-list" style="flex-direction: column; gap: var(--space-sm);">
-                        <li style="margin: 0; padding: 0;">CI/CD Pipeline Design & Implementation</li>
-                        <li style="margin: 0; padding: 0;">Docker & Container Management</li>
-                        <li style="margin: 0; padding: 0;">Monitoring & Observability</li>
-                        <li style="margin: 0; padding: 0;">Security & Compliance</li>
-                        <li style="margin: 0; padding: 0;">Performance Optimization</li>
+                <div class="card skill-category fade-in">
+                    <h4>DEVELOPMENT</h4>
+                    <ul>
+                        <li>Python & Backend Development</li>
+                        <li>Containerization</li>
+                        <li>CI/CD Pipeline Design</li>
+                        <li>Performance Optimization</li>
+                        <li>Security Implementation</li>
                     </ul>
                 </div>
-                <div class="card skill-category">
-                    <h4>📊 Data Engineering</h4>
-                    <ul class="skills-list" style="flex-direction: column; gap: var(--space-sm);">
-                        <li style="margin: 0; padding: 0;">Big Data Processing</li>
-                        <li style="margin: 0; padding: 0;">IoT System Design & Architecture</li>
-                        <li style="margin: 0; padding: 0;">Real-time Analytics Platforms</li>
-                        <li style="margin: 0; padding: 0;">Data Pipeline Architecture</li>
-                        <li style="margin: 0; padding: 0;">Machine Learning Operations</li>
+                <div class="card skill-category fade-in">
+                    <h4>DATA ENGINEERING</h4>
+                    <ul>
+                        <li>Big Data Processing</li>
+                        <li>IoT System Design</li>
+                        <li>Real-time Analytics</li>
+                        <li>Data Pipeline Architecture</li>
+                        <li>Machine Learning Ops</li>
                     </ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer - Transparent -->
     <footer>
         <div class="container">
-            <p class="text-muted">&copy; 2025 Leonardo Pol • Software Engineer • GitHub Profile</p>
+            <p class="text-muted">&copy; 2025 LEONARDO POL</p>
         </div>
     </footer>
 
+    <!-- Animated Navigation Button -->
+    <div class="nav-button" id="navButton">
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+
     <script>
-        // Simple fade-in animation on scroll
+        // Navigation button functionality
+        const navButton = document.getElementById('navButton');
+        const sections = document.querySelectorAll('section');
+        let currentSectionIndex = 0;
+
+        // Function to navigate to next section
+        function navigateToNextSection() {
+            currentSectionIndex = (currentSectionIndex + 1) % sections.length;
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+            
+            // Update button direction based on position
+            if (currentSectionIndex === sections.length - 1) {
+                navButton.classList.add('up');
+            } else {
+                navButton.classList.remove('up');
+            }
+        }
+
+        // Function to navigate to previous section
+        function navigateToPrevSection() {
+            currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length;
+            sections[currentSectionIndex].scrollIntoView({ behavior: 'smooth' });
+            
+            // Update button direction based on position
+            if (currentSectionIndex === 0) {
+                navButton.classList.remove('up');
+            } else {
+                navButton.classList.add('up');
+            }
+        }
+
+        // Click event for navigation button
+        navButton.addEventListener('click', function() {
+            if (currentSectionIndex === sections.length - 1) {
+                // If at last section, go back to top
+                currentSectionIndex = -1;
+                navigateToNextSection();
+            } else {
+                navigateToNextSection();
+            }
+        });
+
+        // Update current section based on scroll position
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSectionIndex = index;
+                    
+                    // Update button direction
+                    if (currentSectionIndex === sections.length - 1) {
+                        navButton.classList.add('up');
+                    } else {
+                        navButton.classList.remove('up');
+                    }
+                }
+            });
+        });
+
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -837,7 +836,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('section').forEach(element => {
+        document.querySelectorAll('.card').forEach(element => {
             observer.observe(element);
         });
     </script>
